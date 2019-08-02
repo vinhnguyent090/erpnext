@@ -1,13 +1,12 @@
 # -*- coding: utf-8 -*-
 # Copyright (c) 2018, Frappe Technologies Pvt. Ltd. and contributors
 # For license information, please see license.txt
-
 from __future__ import unicode_literals
 import frappe
 from frappe import _
 import requests
-from plaid import Client
-from plaid.errors import APIError, ItemError
+#from plaid import Client
+#from plaid.errors import APIError, ItemError
 
 class PlaidConnector():
 	def __init__(self, access_token=None):
@@ -79,3 +78,5 @@ class PlaidConnector():
 			return transactions
 		except Exception:
 			frappe.log_error(frappe.get_traceback(), _("Plaid transactions sync error"))
+                        
+

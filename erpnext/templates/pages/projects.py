@@ -57,13 +57,25 @@ def get_tasks(project, start=0, search=None, item_status=None):
 	return tasks
 
 @frappe.whitelist()
-def get_task_html(project, start=0, item_status=None):
-	return frappe.render_template("erpnext/templates/includes/projects/project_tasks.html",
+def get_project_type__html(project, start=0, item_status=None):
+	return frappe.render_template("erpnext/templates/includes/projects/project_type.html",
 		{"doc": {
 			"name": project,
 			"project_name": project,
-			"tasks": get_tasks(project, start, item_status=item_status)}
+			"project_type": get_project_type(project, start, item_status=item_status)}
 		}, is_path=True)
+                
+
+@frappe.whitelist()
+def get_task_html(project, start=0, item_status=None):
+        return frappe.render_template("erpnext/templates/includes/projects/project_tasks.html",
+                {"doc": {
+                    "name": project,
+                    "project_name": project,
+                    "tasks": get_tasks(project, start, item_status=item_status)}
+                    
+                    }, is_path=True)
+
 
 def get_timesheets(project, start=0, search=None):
 	filters = {"project": project}

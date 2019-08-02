@@ -7,27 +7,32 @@
  "allow_multiple": 1, 
  "allow_print": 0, 
  "amount": 0.0, 
+ "amount_based_on_field": 0, 
+ "client_script": "$.getScript(\"/assets/bellamar_website/js/web_form/addresses.js\", function(){});", 
  "creation": "2016-06-24 15:50:33.196990", 
  "doc_type": "Address", 
  "docstatus": 0, 
  "doctype": "Web Form", 
  "idx": 0, 
+ "introduction_text": "<div><br></div>", 
  "is_standard": 1, 
  "login_required": 1, 
  "max_attachment_size": 0, 
- "modified": "2016-12-07 04:17:02.020768", 
+ "modified": "2019-07-24 02:50:21.382799", 
  "modified_by": "Administrator", 
  "module": "Utilities", 
  "name": "addresses", 
  "owner": "Administrator", 
  "published": 1, 
  "route": "address", 
+ "show_in_grid": 0, 
  "show_sidebar": 0, 
  "sidebar_items": [], 
  "success_url": "/addresses", 
  "title": "Address", 
  "web_form_fields": [
   {
+   "allow_read_on_all_link_options": 0, 
    "description": "", 
    "fieldname": "address_title", 
    "fieldtype": "Data", 
@@ -36,89 +41,48 @@
    "max_length": 0, 
    "max_value": 0, 
    "read_only": 0, 
-   "reqd": 0
+   "reqd": 1, 
+   "show_in_filter": 0
   }, 
   {
+   "allow_read_on_all_link_options": 0, 
+   "default": "Shipping", 
    "fieldname": "address_type", 
    "fieldtype": "Select", 
    "hidden": 0, 
    "label": "Address Type", 
    "max_length": 0, 
    "max_value": 0, 
-   "options": "Billing\nShipping\nOffice\nPersonal\nPlant\nPostal\nShop\nSubsidiary\nWarehouse\nOther", 
+   "options": "Shipping\nBilling", 
    "read_only": 0, 
-   "reqd": 1
+   "reqd": 1, 
+   "show_in_filter": 0
   }, 
   {
-   "fieldname": "address_line1", 
-   "fieldtype": "Data", 
-   "hidden": 0, 
-   "label": "Address Line 1", 
-   "max_length": 0, 
-   "max_value": 0, 
-   "read_only": 0, 
-   "reqd": 1
-  }, 
-  {
-   "fieldname": "address_line2", 
-   "fieldtype": "Data", 
-   "hidden": 0, 
-   "label": "Address Line 2", 
-   "max_length": 0, 
-   "max_value": 0, 
-   "read_only": 0, 
-   "reqd": 0
-  }, 
-  {
-   "fieldname": "city", 
-   "fieldtype": "Data", 
-   "hidden": 0, 
-   "label": "City/Town", 
-   "max_length": 0, 
-   "max_value": 0, 
-   "read_only": 0, 
-   "reqd": 1
-  }, 
-  {
-   "fieldname": "state", 
-   "fieldtype": "Data", 
-   "hidden": 0, 
-   "label": "State", 
-   "max_length": 0, 
-   "max_value": 0, 
-   "read_only": 0, 
-   "reqd": 0
-  }, 
-  {
-   "fieldname": "pincode", 
-   "fieldtype": "Data", 
-   "hidden": 0, 
-   "label": "Postal Code", 
-   "max_length": 0, 
-   "max_value": 0, 
-   "read_only": 0, 
-   "reqd": 0
-  }, 
-  {
-   "fieldname": "country", 
+   "allow_read_on_all_link_options": 0, 
+   "fieldname": "project", 
    "fieldtype": "Link", 
    "hidden": 0, 
-   "label": "Country", 
+   "label": "Project", 
    "max_length": 0, 
    "max_value": 0, 
-   "options": "Country", 
+   "options": "Project", 
    "read_only": 0, 
-   "reqd": 1
+   "reqd": 0, 
+   "show_in_filter": 0
   }, 
   {
+   "allow_read_on_all_link_options": 0, 
    "fieldtype": "Column Break", 
    "hidden": 0, 
    "max_length": 0, 
    "max_value": 0, 
    "read_only": 0, 
-   "reqd": 0
+   "reqd": 0, 
+   "show_in_filter": 0
   }, 
   {
+   "allow_read_on_all_link_options": 0, 
    "fieldname": "email_id", 
    "fieldtype": "Data", 
    "hidden": 0, 
@@ -126,9 +90,11 @@
    "max_length": 0, 
    "max_value": 0, 
    "read_only": 0, 
-   "reqd": 0
+   "reqd": 0, 
+   "show_in_filter": 0
   }, 
   {
+   "allow_read_on_all_link_options": 0, 
    "fieldname": "phone", 
    "fieldtype": "Data", 
    "hidden": 0, 
@@ -136,9 +102,11 @@
    "max_length": 0, 
    "max_value": 0, 
    "read_only": 0, 
-   "reqd": 1
+   "reqd": 1, 
+   "show_in_filter": 0
   }, 
   {
+   "allow_read_on_all_link_options": 0, 
    "default": "0", 
    "description": "", 
    "fieldname": "is_primary_address", 
@@ -148,9 +116,11 @@
    "max_length": 0, 
    "max_value": 0, 
    "read_only": 0, 
-   "reqd": 0
+   "reqd": 0, 
+   "show_in_filter": 0
   }, 
   {
+   "allow_read_on_all_link_options": 0, 
    "default": "0", 
    "description": "", 
    "fieldname": "is_shipping_address", 
@@ -160,7 +130,114 @@
    "max_length": 0, 
    "max_value": 0, 
    "read_only": 0, 
-   "reqd": 0
+   "reqd": 0, 
+   "show_in_filter": 0
+  }, 
+  {
+   "allow_read_on_all_link_options": 0, 
+   "fieldname": "", 
+   "fieldtype": "Section Break", 
+   "hidden": 0, 
+   "max_length": 0, 
+   "max_value": 0, 
+   "read_only": 0, 
+   "reqd": 0, 
+   "show_in_filter": 0
+  }, 
+  {
+   "allow_read_on_all_link_options": 0, 
+   "fieldtype": "HTML", 
+   "hidden": 0, 
+   "max_length": 0, 
+   "max_value": 0, 
+   "options": "<div id=\"google_map_address\"></div>", 
+   "read_only": 0, 
+   "reqd": 0, 
+   "show_in_filter": 0
+  }, 
+  {
+   "allow_read_on_all_link_options": 0, 
+   "fieldname": "", 
+   "fieldtype": "Section Break", 
+   "hidden": 0, 
+   "max_length": 0, 
+   "max_value": 0, 
+   "read_only": 0, 
+   "reqd": 0, 
+   "show_in_filter": 0
+  }, 
+  {
+   "allow_read_on_all_link_options": 0, 
+   "fieldname": "address_line1", 
+   "fieldtype": "Data", 
+   "hidden": 0, 
+   "label": "Address Line 1", 
+   "max_length": 0, 
+   "max_value": 0, 
+   "read_only": 1, 
+   "reqd": 1, 
+   "show_in_filter": 0
+  }, 
+  {
+   "allow_read_on_all_link_options": 0, 
+   "fieldname": "address_line2", 
+   "fieldtype": "Data", 
+   "hidden": 1, 
+   "label": "Address Line 2", 
+   "max_length": 0, 
+   "max_value": 0, 
+   "read_only": 1, 
+   "reqd": 0, 
+   "show_in_filter": 0
+  }, 
+  {
+   "allow_read_on_all_link_options": 0, 
+   "fieldname": "city", 
+   "fieldtype": "Data", 
+   "hidden": 0, 
+   "label": "City/Town", 
+   "max_length": 0, 
+   "max_value": 0, 
+   "read_only": 1, 
+   "reqd": 1, 
+   "show_in_filter": 0
+  }, 
+  {
+   "allow_read_on_all_link_options": 0, 
+   "fieldname": "state", 
+   "fieldtype": "Data", 
+   "hidden": 0, 
+   "label": "State", 
+   "max_length": 0, 
+   "max_value": 0, 
+   "read_only": 1, 
+   "reqd": 1, 
+   "show_in_filter": 0
+  }, 
+  {
+   "allow_read_on_all_link_options": 0, 
+   "fieldname": "pincode", 
+   "fieldtype": "Data", 
+   "hidden": 0, 
+   "label": "Postal Code", 
+   "max_length": 0, 
+   "max_value": 0, 
+   "read_only": 1, 
+   "reqd": 1, 
+   "show_in_filter": 0
+  }, 
+  {
+   "allow_read_on_all_link_options": 1, 
+   "fieldname": "country", 
+   "fieldtype": "Link", 
+   "hidden": 0, 
+   "label": "Country", 
+   "max_length": 0, 
+   "max_value": 0, 
+   "options": "Country", 
+   "read_only": 1, 
+   "reqd": 1, 
+   "show_in_filter": 0
   }
  ]
 }

@@ -482,39 +482,48 @@ def make_sales_invoice(source_name, target_doc=None):
 
 	return doc
 
+#this fucntion use in delivery trip for bonus or penalty
 @frappe.whitelist()
 def make_delivery_trip(source_name, target_doc=None):
-	def update_stop_details(source_doc, target_doc, source_parent):
-		target_doc.customer = source_parent.customer
-		target_doc.address = source_parent.shipping_address_name
-		target_doc.customer_address = source_parent.shipping_address
-		target_doc.contact = source_parent.contact_person
-		target_doc.customer_contact = source_parent.contact_display
-		target_doc.grand_total = source_parent.grand_total
+    def update_stop_details(source_doc, target_doc, source_parent):
+        target_doc.customer = source_parent.customer
+        target_doc.address = source_parent.shipping_address_name
+        target_doc.customer_address = source_parent.shipping_address
+        target_doc.contact = source_parent.contact_person
+        target_doc.customer_contact = source_parent.contact_display
+        target_doc.grand_total = source_parent.grand_total
+        #code for bonus and penalty
+        target_doc.bonus = source_parent.bonus
+        target_doc.penalty = source_parent.penalty
+		#code for addres1 address 2
+        if source_parent.address1  and source_parent.address2:
+            target_doc.runner_address = source_parent.address1 + "," + source_parent.address2
+        
+        # Append unique Delivery Notes in Delivery Trip
+        
+        delivery_notes.append(target_doc.delivery_note)
+        
+    delivery_notes = []
+    
+    doclist = get_mapped_doc("Delivery Note", source_name, {
+        "Delivery Note": {
+            "doctype": "Delivery Trip",
+            "validation": {
+                   "docstatus": ["=", 0]
+            }
+         },
+        "Delivery Note Item": {
+            "doctype": "Delivery Stop",
+            "field_map": {
+                "parent": "delivery_note"
+            },
+            "condition": lambda item: item.parent not in delivery_notes,
+            "postprocess": update_stop_details
+        }
+    }, target_doc)
+    
+    return doclist
 
-		# Append unique Delivery Notes in Delivery Trip
-		delivery_notes.append(target_doc.delivery_note)
-
-	delivery_notes = []
-
-	doclist = get_mapped_doc("Delivery Note", source_name, {
-		"Delivery Note": {
-			"doctype": "Delivery Trip",
-			"validation": {
-				"docstatus": ["=", 1]
-			}
-		},
-		"Delivery Note Item": {
-			"doctype": "Delivery Stop",
-			"field_map": {
-				"parent": "delivery_note"
-			},
-			"condition": lambda item: item.parent not in delivery_notes,
-			"postprocess": update_stop_details
-		}
-	}, target_doc)
-
-	return doclist
 
 @frappe.whitelist()
 def make_installation_note(source_name, target_doc=None):

@@ -11,6 +11,7 @@ from frappe import _
 from frappe.contacts.doctype.address.address import get_address_display
 from frappe.model.document import Document
 from frappe.utils import cint, get_datetime, get_link_to_form
+import re
 
 
 class DeliveryTrip(Document):
@@ -25,6 +26,7 @@ class DeliveryTrip(Document):
 
 	def validate(self):
 		self.validate_stop_addresses()
+		self.update_employee()
 
 	def on_submit(self):
 		self.update_status()
@@ -59,37 +61,38 @@ class DeliveryTrip(Document):
 		self.db_set("status", status)
 
 	def update_delivery_notes(self, delete=False):
-		"""
-		Update all connected Delivery Notes with Delivery Trip details
-		(Driver, Vehicle, etc.). If `delete` is `True`, then details
-		are removed.
-
-		Args:
-			delete (bool, optional): Defaults to `False`. `True` if driver details need to be emptied, else `False`.
-		"""
-
 		delivery_notes = list(set([stop.delivery_note for stop in self.delivery_stops if stop.delivery_note]))
-
 		update_fields = {
-			"driver": self.driver,
-			"driver_name": self.driver_name,
-			"vehicle_no": self.vehicle,
-			"lr_no": self.name,
-			"lr_date": self.departure_time
-		}
-
+					"driver": self.driver,
+					"driver_name": self.driver_name,
+					"vehicle_no": self.vehicle,
+					"lr_no": self.name,
+					"lr_date": self.departure_time,
+				}
 		for delivery_note in delivery_notes:
 			note_doc = frappe.get_doc("Delivery Note", delivery_note)
-
 			for field, value in update_fields.items():
 				value = None if delete else value
 				setattr(note_doc, field, value)
-
 			note_doc.flags.ignore_validate_update_after_submit = True
 			note_doc.save()
-
 		delivery_notes = [get_link_to_form("Delivery Note", note) for note in delivery_notes]
-		frappe.msgprint(_("Delivery Notes {0} updated".format(", ".join(delivery_notes))))
+		frappe.msgprint(_("Delivery Notes  {0} updated".format(", ".join(delivery_notes)))) 
+        
+	def update_employee(self, delete=False):
+		delivery_notes = list(set([stop.delivery_note for stop in self.delivery_stops if stop.delivery_note]))
+		update_fields = {
+			"employee": self.employee,
+		}
+		for delivery_note in delivery_notes:
+			note_doc = frappe.get_doc("Delivery Note", delivery_note)
+			for field, value in update_fields.items():
+				value = None if delete else value
+				setattr(note_doc, field, value)
+			note_doc.flags.ignore_validate_update_after_submit = True
+			note_doc.save()
+		delivery_notes = [get_link_to_form("Delivery Note", note) for note in delivery_notes]
+		frappe.msgprint(_("Delivery Notes  {0} updated".format(", ".join(delivery_notes))))
 
 	def process_route(self, optimize):
 		"""
@@ -165,24 +168,34 @@ class DeliveryTrip(Document):
 		route_list = []
 		# Initialize first leg with origin as the home address
 		leg = [home_address]
+		customer_address=[]
+		runner_address=[]
 
 		for stop in self.delivery_stops:
 			leg.append(stop.customer_address)
-
+			# TAG_RE = re.compile(r'<[^>]+>')
+			# cus_add=TAG_RE.sub(',',stop.customer_address)
+			
+			#customer_address.append(stop.customer_address)
+			#runner_address.append(stop.runner_address)
 			if optimize and stop.lock:
 				route_list.append(leg)
 				leg = [stop.customer_address]
 
-		# For last leg, append home address as the destination
-		# only if lock isn't on the final stop
+				# For last leg, append home address as the destination
+				# only if lock isn't on the final stop
+				print(route_list,"rout")
+				print(leg,"leg")
 		if len(leg) > 1:
 			leg.append(home_address)
 			route_list.append(leg)
 
 		route_list = [[sanitize_address(address) for address in route] for route in route_list]
+		#route_list=[[u'Korecent Solutions Pvt Ltd. vill jhulgan,mandi','Stockholms Centralstation,Centralplan 15, 111 20 Stockholm, Sweden',u'Korecent Solutions Pvt Ltd. vill jhulgan,mandi']]
+		#route_list=[runner_address + customer_address + runner_address
 
 		return route_list
-
+        
 	def rearrange_stops(self, optimized_order, start):
 		"""
 		Re-arrange delivery stops based on order optimized
@@ -394,3 +407,19 @@ def get_attachments(delivery_stop):
 										print_format=dispatch_attachment)
 
 	return [attachments]
+
+
+@frappe.whitelist()
+def update_bonus_penalty(delivery_trip):
+    delivery_notes = list(set([stop.delivery_note for stop in delivery_trip.delivery_stops if stop.delivery_note]))
+    for delivery_note in delivery_notes:
+        doc_n=frappe.get_doc("Delivery Note",delivery_note)
+    update_field={
+            "bonus" : doc_n.bonus
+            
+            }
+    for field,value in update_field.items():
+        value =None if delete else value
+        setattr(note_doc, field, value)
+    note_doc.flags.ignore_validate_update_after_submit = True
+    note_doc.save()

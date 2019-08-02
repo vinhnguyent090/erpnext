@@ -167,7 +167,7 @@ def get_pricing_rule_for_item(args):
 
 	if args.transaction_type=="selling":
 		if args.customer and not (args.customer_group and args.territory):
-			customer = frappe.get_cached_value("Customer", args.customer, ["customer_group", "territory"])
+			customer = frappe.get_cached_value("Customer", args.customer, ["customer_group",  "territory"])
 			if customer:
 				args.customer_group, args.territory = customer
 
@@ -179,6 +179,10 @@ def get_pricing_rule_for_item(args):
 
 	pricing_rules = get_pricing_rules(args)
 	pricing_rule = filter_pricing_rules(args, pricing_rules)
+
+	maximum_qty = frappe.db.get_value("Pricing Rule",args.get("pricing_rule"),"max_qty")
+	stock_qty = flt(args.get('qty')) * args.get('conversion_factor', 1)
+	item_pricelist_rate = frappe.db.get_value("Item Price",{"price_list":args.price_list,"item_code":args.item_code},"price_list_rate")
 
 	if pricing_rule:
 		item_details.pricing_rule = pricing_rule.name
@@ -197,13 +201,36 @@ def get_pricing_rule_for_item(args):
 			if pricing_rule.currency == args.currency:
 				pricing_rule_rate = pricing_rule.rate
 
-			item_details.update({
-				"price_list_rate": pricing_rule_rate * args.get("conversion_factor"),
-				"discount_percentage": 0.0
-			})
+			if stock_qty > maximum_qty and maximum_qty:
+				actual_rate = float(((maximum_qty * pricing_rule.price) + (stock_qty - maximum_qty) * item_pricelist_rate)/stock_qty)
+				item_details.update({
+					"price_list_rate": (actual_rate/flt(args.conversion_rate)) * (args.conversion_factor or 1.0) \
+						if args.conversion_rate else 0.0,
+					"discount_percentage": 0.0
+				})
+			else:
+				item_details.update({
+					"price_list_rate": pricing_rule_rate * args.get("conversion_factor"),
+					"discount_percentage": 0.0
+				})
+
+			# item_details.update({
+			# 	"price_list_rate": pricing_rule_rate * args.get("conversion_factor"),
+			# 	"discount_percentage": 0.0
+			# })
+
 		else:
-			item_details.discount_percentage = (pricing_rule.get('discount_percentage', 0)
-				if pricing_rule else args.discount_percentage)
+
+			if maximum_qty and stock_qty > maximum_qty:
+				discounted_percentage = (maximum_qty * item_pricelist_rate * pricing_rule.discount_percentage)/(item_pricelist_rate*stock_qty)
+				item_details.discount_percentage = float(discounted_percentage)
+			else:
+				item_details.discount_percentage = (pricing_rule.get('discount_percentage', 0)
+					if pricing_rule else args.discount_percentage)
+			
+			# item_details.discount_percentage = (pricing_rule.get('discount_percentage', 0)
+			# 		if pricing_rule else args.discount_percentage)
+
 	elif args.get('pricing_rule'):
 		item_details = remove_pricing_rule_for_item(args.get("pricing_rule"), item_details)
 
@@ -314,8 +341,10 @@ def filter_pricing_rules(args, pricing_rules):
 	if pricing_rules:
 		stock_qty = flt(args.get('qty')) * args.get('conversion_factor', 1)
 
-		pricing_rules = list(filter(lambda x: (flt(stock_qty)>=flt(x.min_qty)
-			and (flt(stock_qty)<=x.max_qty if x.max_qty else True)), pricing_rules))
+		# pricing_rules = list(filter(lambda x: (flt(stock_qty)>=flt(x.min_qty)
+		# 	and (flt(stock_qty)<=x.max_qty if x.max_qty else True)), pricing_rules))
+		
+		pricing_rules = list(filter(lambda x: (flt(stock_qty)>=flt(x.min_qty)), pricing_rules))
 
 		# add variant_of property in pricing rule
 		for p in pricing_rules:
