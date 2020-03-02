@@ -21,10 +21,16 @@ class PaymentReconciliation(Document):
 		payment_entries = self.get_payment_entries()
 		journal_entries = self.get_jv_entries()
 
+		entry_list = payment_entries + journal_entries
 		if self.party_type in ["Customer", "Supplier"]:
 			dr_or_cr_notes = self.get_dr_or_cr_notes()
+			entry_list = entry_list + dr_or_cr_notes
+		self.add_payment_entries(entry_list)
 
-		self.add_payment_entries(payment_entries + journal_entries + dr_or_cr_notes)
+		# if self.party_type in ["Customer", "Supplier"]:
+		# 	dr_or_cr_notes = self.get_dr_or_cr_notes()
+
+		# self.add_payment_entries(payment_entries + journal_entries + dr_or_cr_notes)
 
 	def get_payment_entries(self):
 		order_doctype = "Sales Order" if self.party_type=="Customer" else "Purchase Order"

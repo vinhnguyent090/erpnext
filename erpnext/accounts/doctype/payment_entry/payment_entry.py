@@ -449,6 +449,12 @@ class PaymentEntry(AccountsController):
 
 			dr_or_cr = "credit" if erpnext.get_party_account_type(self.party_type) == 'Receivable' else "debit"
 
+			if self.party_type == "Employee":
+				if self.payment_type=="Receive":
+					dr_or_cr = "credit"
+				else:
+					dr_or_cr = "debit"				
+
 			for d in self.get("references"):
 				gle = party_gl_dict.copy()
 				gle.update({
