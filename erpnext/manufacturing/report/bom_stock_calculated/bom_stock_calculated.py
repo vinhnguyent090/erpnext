@@ -86,6 +86,6 @@ def get_bom_stock(filters):
 			GROUP BY bom_item.item_code""".format(qty_field=qty_field, table=table, conditions=conditions, bom=bom), as_dict=1)
 
 def get_item_details(item_code):
-		items = frappe.db.sql("""select it.item_group, it.item_name, it.stock_uom, it.name, it.brand, it.description, it.manufacturer_part_no, it.manufacturer from tabItem it where it.item_code = %s""", item_code, as_dict=1)
+		items = frappe.db.sql("""select it.item_group, it.item_name, it.stock_uom, it.name, it.brand, it.description, "" as manufacturer_part_no, "" as manufacturer from tabItem it where it.item_code = %s""", item_code, as_dict=1)
 
 		return dict((d.name, d) for d in items)
