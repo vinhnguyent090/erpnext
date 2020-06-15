@@ -14,6 +14,7 @@ from erpnext.accounts.utils import get_fiscal_year
 from erpnext.exceptions import InvalidAccountCurrency
 from erpnext.accounts.doctype.accounting_dimension.accounting_dimension import get_checks_for_pl_and_bs_accounts
 
+
 exclude_from_linked_with = True
 class GLEntry(Document):
 	def autoname(self):

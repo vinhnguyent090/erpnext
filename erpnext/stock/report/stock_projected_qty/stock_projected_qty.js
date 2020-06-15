@@ -44,6 +44,12 @@ frappe.query_reports["Stock Projected Qty"] = {
 			"label": __("Include UOM"),
 			"fieldtype": "Link",
 			"options": "UOM"
+		},
+		{
+			"fieldname":"work_order",
+			"label": __("Work Order"),
+			"fieldtype": "Link",
+			"options": "Work Order"
 		}
 	]
 }

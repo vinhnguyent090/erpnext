@@ -173,6 +173,7 @@
    "set_only_once": 1
   },
   {
+   "allow_on_submit": 1,
    "bold": 1,
    "fieldname": "customer",
    "fieldtype": "Link",
@@ -187,6 +188,7 @@
    "search_index": 1
   },
   {
+   "allow_on_submit": 1,
    "bold": 1,
    "fetch_from": "customer.customer_name",
    "fieldname": "customer_name",
@@ -311,6 +313,7 @@
    "read_only": 1
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "contact_person",
    "fieldtype": "Link",
    "label": "Contact Person",
@@ -318,6 +321,7 @@
    "print_hide": 1
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "contact_display",
    "fieldtype": "Small Text",
    "in_global_search": 1,
@@ -325,12 +329,14 @@
    "read_only": 1
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "contact_mobile",
    "fieldtype": "Small Text",
    "label": "Mobile No",
    "read_only": 1
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "contact_email",
    "fieldtype": "Data",
    "hidden": 1,
@@ -340,12 +346,14 @@
    "read_only": 1
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "company_address_display",
    "fieldtype": "Small Text",
    "label": "Company Address",
    "read_only": 1
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "company_address",
    "fieldtype": "Link",
    "label": "Company Address Name",
@@ -749,6 +757,7 @@
    "read_only": 1
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "base_rounded_total",
    "fieldtype": "Currency",
    "label": "Rounded Total (Company Currency)",
@@ -760,6 +769,7 @@
    "width": "150px"
   },
   {
+   "allow_on_submit": 1,
    "description": "In Words will be visible once you save the Sales Order.",
    "fieldname": "base_in_words",
    "fieldtype": "Data",
@@ -798,6 +808,7 @@
    "read_only": 1
   },
   {
+   "allow_on_submit": 1,
    "bold": 1,
    "fieldname": "rounded_total",
    "fieldtype": "Currency",
@@ -809,6 +820,7 @@
    "width": "150px"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "in_words",
    "fieldtype": "Data",
    "label": "In Words",
@@ -846,11 +858,13 @@
    "read_only": 1
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "payment_schedule_section",
    "fieldtype": "Section Break",
    "label": "Payment Terms"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "payment_terms_template",
    "fieldtype": "Link",
    "label": "Payment Terms Template",
@@ -858,6 +872,7 @@
    "print_hide": 1
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "payment_schedule",
    "fieldtype": "Table",
    "label": "Payment Schedule",
@@ -1177,6 +1192,7 @@
    "label": "Update Auto Repeat Reference"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "contact_phone",
    "fieldtype": "Data",
    "label": "Phone",
@@ -1194,8 +1210,8 @@
  "icon": "fa fa-file-text",
  "idx": 105,
  "is_submittable": 1,
- "modified": "2019-10-23 14:26:42.767189",
- "modified_by": "Administrator",
+ "modified": "2020-05-30 18:06:56.163255",
+ "modified_by": "yuxinyong@163.com",
  "module": "Selling",
  "name": "Sales Order",
  "owner": "Administrator",

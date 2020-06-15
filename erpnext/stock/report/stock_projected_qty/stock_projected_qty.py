@@ -7,12 +7,14 @@ from frappe import _
 from frappe.utils import flt, today
 from erpnext.stock.utils import update_included_uom_in_report
 
+@frappe.whitelist()
 def execute(filters=None):
 	filters = frappe._dict(filters or {})
 	include_uom = filters.get("include_uom")
+	work_order = filters.get("work_order")
 	columns = get_columns()
 	bin_list = get_bin_list(filters)
-	item_map = get_item_map(filters.get("item_code"), include_uom)
+	item_map = get_item_map(filters.get("item_code"), include_uom, work_order)
 
 	warehouse_company = {}
 	data = []
@@ -45,16 +47,24 @@ def execute(filters=None):
 				re_order_qty = d.warehouse_reorder_qty
 
 		shortage_qty = re_order_level - flt(bin.projected_qty) if (re_order_level or re_order_qty) else 0
-
-		data.append([item.name, item.item_name, item.description, item.item_group, item.brand, bin.warehouse,
+		row = [item.name, item.item_name, item.description, item.item_group, item.brand, bin.warehouse,
 			item.stock_uom, bin.actual_qty, bin.planned_qty, bin.indented_qty, bin.ordered_qty,
 			bin.reserved_qty, bin.reserved_qty_for_production, bin.reserved_qty_for_sub_contract,
-			bin.projected_qty, re_order_level, re_order_qty, shortage_qty])
+			bin.projected_qty, re_order_level, re_order_qty, shortage_qty]
+		if filters.work_order:
+			row.insert(6,bin.required_qty)
+			row.insert(7,bin.transferred_qty)
+
+		data.append(row)
 
 		if include_uom:
 			conversion_factors.append(item.conversion_factor)
 
 	update_included_uom_in_report(columns, data, include_uom, conversion_factors)
+	if filters.work_order:
+		columns.insert(6,{"label": _("Required Qty"), "fieldname": "required_qty", "fieldtype": "Float", "width": 100, "convertible": "qty"})
+		columns.insert(7,{"label": _("Transferred Qty"), "fieldname": "transferred_qty", "fieldtype": "Float", "width": 100, "convertible": "qty"})
+
 	return columns, data
 
 def get_columns():
@@ -83,36 +93,47 @@ def get_columns():
 
 def get_bin_list(filters):
 	conditions = []
+	if filters.work_order:
+		sql = """select bin.item_code, warehouse, required_qty, transferred_qty, actual_qty, planned_qty, indented_qty,
+			ordered_qty, reserved_qty, reserved_qty_for_production, reserved_qty_for_sub_contract, projected_qty
+			from tabBin bin inner join `tabWork Order Item` woi on bin.item_code=woi.item_code 
+			and bin.warehouse = woi.source_warehouse where woi.parent ='{work_order}' 
+			order by bin.item_code, bin.warehouse""".format(work_order=filters.work_order)
+	else:
+		if filters.item_code:
+			conditions.append("item_code = '%s' "%filters.item_code)
+			
+		if filters.warehouse:
+			warehouse_details = frappe.db.get_value("Warehouse", filters.warehouse, ["lft", "rgt"], as_dict=1)
 
-	if filters.item_code:
-		conditions.append("item_code = '%s' "%filters.item_code)
-
-	if filters.warehouse:
-		warehouse_details = frappe.db.get_value("Warehouse", filters.warehouse, ["lft", "rgt"], as_dict=1)
-
-		if warehouse_details:
-			conditions.append(" exists (select name from `tabWarehouse` wh \
-				where wh.lft >= %s and wh.rgt <= %s and bin.warehouse = wh.name)"%(warehouse_details.lft,
-				warehouse_details.rgt))
-
-	bin_list = frappe.db.sql("""select item_code, warehouse, actual_qty, planned_qty, indented_qty,
-		ordered_qty, reserved_qty, reserved_qty_for_production, reserved_qty_for_sub_contract, projected_qty
-		from tabBin bin {conditions} order by item_code, warehouse
-		""".format(conditions=" where " + " and ".join(conditions) if conditions else ""), as_dict=1)
+			if warehouse_details:
+				conditions.append(" exists (select name from `tabWarehouse` wh \
+					where wh.lft >= %s and wh.rgt <= %s and bin.warehouse = wh.name)"%(warehouse_details.lft,
+					warehouse_details.rgt))
+		sql = """select item_code, warehouse, actual_qty, planned_qty, indented_qty,
+			ordered_qty, reserved_qty, reserved_qty_for_production, reserved_qty_for_sub_contract, projected_qty
+			from tabBin bin {conditions} order by item_code, warehouse
+			""".format(conditions=" where " + " and ".join(conditions) if conditions else "")
+	bin_list = frappe.db.sql(sql, as_dict=1)
 
 	return bin_list
 
-def get_item_map(item_code, include_uom):
+def get_item_map(item_code, include_uom, work_order):
 	"""Optimization: get only the item doc and re_order_levels table"""
 
 	condition = ""
+
 	if item_code:
-		condition = 'and item_code = {0}'.format(frappe.db.escape(item_code, percent=False))
+		condition = 'and item_code = "{0}"'.format(frappe.db.escape(item_code, percent=False))	
 
 	cf_field = cf_join = ""
 	if include_uom:
 		cf_field = ", ucd.conversion_factor"
 		cf_join = "left join `tabUOM Conversion Detail` ucd on ucd.parent=item.name and ucd.uom=%(include_uom)s"
+
+	if work_order:
+		cf_join = "inner join `tabWork Order Item` woi on woi.item_code=item.name "
+		condition = 'and woi.parent = {0}'.format(frappe.db.escape(work_order, percent=False))
 
 	items = frappe.db.sql("""
 		select item.name, item.item_name, item.description, item.item_group, item.brand, item.stock_uom{cf_field}
@@ -128,7 +149,7 @@ def get_item_map(item_code, include_uom):
 
 	condition = ""
 	if item_code:
-		condition = 'where parent={0}'.format(frappe.db.escape(item_code, percent=False))
+		condition = 'where parent="{0}"'.format(frappe.db.escape(item_code, percent=False))
 
 	reorder_levels = frappe._dict()
 	for ir in frappe.db.sql("""select * from `tabItem Reorder` {condition}""".format(condition=condition), as_dict=1):

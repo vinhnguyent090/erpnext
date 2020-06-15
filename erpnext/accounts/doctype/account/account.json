@@ -1,6 +1,7 @@
 {
  "allow_copy": 1,
  "allow_import": 1,
+ "allow_rename": 1,
  "creation": "2013-01-30 12:49:46",
  "description": "Heads (or groups) against which Accounting Entries are made and balances are maintained.",
  "doctype": "DocType",
@@ -118,7 +119,6 @@
    "oldfieldname": "parent_account",
    "oldfieldtype": "Link",
    "options": "Account",
-   "reqd": 1,
    "search_index": 1
   },
   {
@@ -196,8 +196,8 @@
  ],
  "icon": "fa fa-money",
  "idx": 1,
- "modified": "2019-10-10 19:10:02.967554",
- "modified_by": "Administrator",
+ "modified": "2020-03-22 19:43:49.693607",
+ "modified_by": "yuxinyong@163.com",
  "module": "Accounts",
  "name": "Account",
  "owner": "Administrator",

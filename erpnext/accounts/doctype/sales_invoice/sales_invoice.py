@@ -1437,8 +1437,8 @@ def validate_inter_company_transaction(doc, doctype):
 
 	company = details.get("company")
 	default_currency = frappe.get_cached_value('Company', company, "default_currency")
-	if default_currency != doc.currency:
-		frappe.throw(_("Company currencies of both the companies should match for Inter Company Transactions."))
+	#if default_currency != doc.currency:
+	#	frappe.throw(_("Company currencies of both the companies should match for Inter Company Transactions."))
 
 	return
 

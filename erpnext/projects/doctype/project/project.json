@@ -19,6 +19,7 @@
   "expected_end_date",
   "priority",
   "department",
+  "image",
   "customer_details",
   "customer",
   "column_break_14",
@@ -73,7 +74,6 @@
    "unique": 1
   },
   {
-   "default": "Open",
    "fieldname": "status",
    "fieldtype": "Select",
    "in_standard_filter": 1,
@@ -81,7 +81,7 @@
    "no_copy": 1,
    "oldfieldname": "status",
    "oldfieldtype": "Select",
-   "options": "Open\nCompleted\nCancelled",
+   "options": "Open\nCompleted\nCancelled\nMASTER Completed\nMASTER Open",
    "reqd": 1,
    "search_index": 1
   },
@@ -127,8 +127,7 @@
    "fieldname": "project_template",
    "fieldtype": "Link",
    "label": "From Template",
-   "options": "Project Template",
-   "set_only_once": 1
+   "options": "Project Template"
   },
   {
    "fieldname": "expected_start_date",
@@ -439,13 +438,20 @@
    "fieldname": "message",
    "fieldtype": "Text",
    "label": "Message"
+  },
+  {
+   "fieldname": "image",
+   "fieldtype": "Attach Image",
+   "in_preview": 1,
+   "label": "Image",
+   "options": "image"
   }
  ],
  "icon": "fa fa-puzzle-piece",
  "idx": 29,
  "max_attachments": 4,
- "modified": "2019-09-24 15:02:50.208301",
- "modified_by": "Administrator",
+ "modified": "2019-12-18 21:49:32.851149",
+ "modified_by": "fma@mtm-t.com",
  "module": "Projects",
  "name": "Project",
  "owner": "Administrator",

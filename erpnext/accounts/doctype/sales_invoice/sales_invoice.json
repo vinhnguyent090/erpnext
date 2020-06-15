@@ -907,7 +907,7 @@
    "fieldtype": "Currency",
    "label": "Additional Discount Amount",
    "options": "currency",
-   "print_hide": 1
+   "precision": "2"
   },
   {
    "fieldname": "totals",
@@ -1567,8 +1567,8 @@
  "icon": "fa fa-file-text",
  "idx": 181,
  "is_submittable": 1,
- "modified": "2019-10-05 21:39:49.235990",
- "modified_by": "Administrator",
+ "modified": "2020-06-09 15:47:52.803183",
+ "modified_by": "brian.zhou@mtm-t.com",
  "module": "Accounts",
  "name": "Sales Invoice",
  "name_case": "Title Case",

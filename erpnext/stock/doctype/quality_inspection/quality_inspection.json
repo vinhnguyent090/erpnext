@@ -123,8 +123,7 @@
    "fieldtype": "Float",
    "label": "Sample Size",
    "oldfieldname": "sample_size",
-   "oldfieldtype": "Currency",
-   "reqd": 1
+   "oldfieldtype": "Currency"
   },
   {
    "fieldname": "column_break1",
@@ -152,14 +151,11 @@
    "fieldtype": "Section Break"
   },
   {
-   "default": "user",
    "fieldname": "inspected_by",
-   "fieldtype": "Link",
+   "fieldtype": "Data",
    "label": "Inspected By",
    "oldfieldname": "inspected_by",
-   "oldfieldtype": "Data",
-   "options": "User",
-   "reqd": 1
+   "oldfieldtype": "Data"
   },
   {
    "fieldname": "verified_by",
@@ -231,8 +227,8 @@
  "icon": "fa fa-search",
  "idx": 1,
  "is_submittable": 1,
- "modified": "2019-07-12 12:07:23.153698",
- "modified_by": "Administrator",
+ "modified": "2020-06-09 17:48:13.089984",
+ "modified_by": "brian.zhou@mtm-t.com",
  "module": "Stock",
  "name": "Quality Inspection",
  "owner": "Administrator",
@@ -249,6 +245,18 @@
    "role": "Quality Manager",
    "share": 1,
    "submit": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Stock User",
+   "share": 1,
    "write": 1
   }
  ],

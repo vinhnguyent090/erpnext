@@ -230,6 +230,7 @@
    "label": "Currency and Price List"
   },
   {
+   "default": "USD",
    "fieldname": "default_currency",
    "fieldtype": "Link",
    "ignore_user_permissions": 1,
@@ -469,8 +470,8 @@
  "icon": "fa fa-user",
  "idx": 363,
  "image_field": "image",
- "modified": "2019-09-06 12:40:31.801424",
- "modified_by": "Administrator",
+ "modified": "2019-12-05 13:07:22.509702",
+ "modified_by": "fma@mtm-t.com",
  "module": "Selling",
  "name": "Customer",
  "name_case": "Title Case",
