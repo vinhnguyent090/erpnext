@@ -4,8 +4,8 @@
 {%- set columns = doc.flags.format_columns(display_columns, compact_fields) -%}
 
 {% if doc.in_format_data("image") and doc.get("image") and "image" in display_columns -%}
-<div class="pull-left" style="max-width: 40%; margin-right: 10px;">
-	<img class="print-item-image" src="{{ doc.image }}" alt="">
+<div class="pull-left" style="max-width: 25%; margin-right: 10px;">
+	<img style="max-height: 100px;" class="print-item-image" src="{{ doc.image }}" alt="">
 </div>
 {%- endif %}
 
