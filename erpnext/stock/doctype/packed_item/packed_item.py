@@ -19,7 +19,7 @@ def get_product_bundle_items(item_code):
 
 def get_packing_item_details(item, company):
 	return frappe.db.sql("""
-		select i.item_name, i.is_stock_item, i.description, i.stock_uom, id.default_warehouse
+		select i.item_name, i.is_stock_item, i.description, i.stock_uom, id.default_warehouse, id.default_supplier
 		from `tabItem` i LEFT JOIN `tabItem Default` id ON id.parent=i.name and id.company=%s
 		where i.name = %s""",
 		(company, item), as_dict = 1)[0]
@@ -58,6 +58,10 @@ def update_packing_list_item(doc, packing_item_code, qty, main_item_row, descrip
 	if not pi.warehouse and not doc.amended_from:
 		pi.warehouse = (main_item_row.warehouse if ((doc.get('is_pos') or item.is_stock_item \
 			or not item.default_warehouse) and main_item_row.warehouse) else item.default_warehouse)
+
+	if not pi.supplier:
+		pi.supplier = (main_item_row.supplier if (not item.default_supplier and main_item_row.supplier) else item.default_supplier)
+		
 	if not pi.batch_no and not doc.amended_from:
 		pi.batch_no = cstr(main_item_row.get("batch_no"))
 	if not pi.target_warehouse:
