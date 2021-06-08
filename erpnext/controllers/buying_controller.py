@@ -790,7 +790,7 @@ class BuyingController(StockController):
 		if not self.get("items"):
 			return
 
-		earliest_schedule_date = min([d.schedule_date for d in self.get("items")])
+		earliest_schedule_date = min([getdate(d.schedule_date) for d in self.get("items")])
 		if earliest_schedule_date:
 			self.schedule_date = earliest_schedule_date
 
@@ -801,7 +801,8 @@ class BuyingController(StockController):
 
 				if (d.schedule_date and self.transaction_date and
 					getdate(d.schedule_date) < getdate(self.transaction_date)):
-					frappe.throw(_("Row #{0}: Reqd by Date cannot be before Transaction Date").format(d.idx))
+					self.transaction_date = d.schedule_date
+					# frappe.throw(_("Row #{0}: Reqd by Date cannot be before Transaction Date").format(d.idx))
 		else:
 			frappe.throw(_("Please enter Reqd by Date"))
 
