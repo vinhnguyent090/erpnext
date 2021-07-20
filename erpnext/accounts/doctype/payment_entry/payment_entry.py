@@ -247,7 +247,7 @@ class PaymentEntry(AccountsController):
 		if self.party_type == "Student":
 			valid_reference_doctypes = ("Fees")
 		elif self.party_type == "Customer":
-			valid_reference_doctypes = ("Sales Order", "Sales Invoice", "Journal Entry", "Dunning")
+			valid_reference_doctypes = ("Sales Order", "Sales Invoice", "Journal Entry", "Dunning", "Contract")
 		elif self.party_type == "Supplier":
 			valid_reference_doctypes = ("Purchase Order", "Purchase Invoice", "Journal Entry")
 		elif self.party_type == "Employee":
@@ -1259,6 +1259,10 @@ def get_reference_details(reference_doctype, reference_name, party_account_curre
 		total_amount = ref_doc.get("grand_total")
 		exchange_rate = 1
 		outstanding_amount = ref_doc.get("outstanding_amount")
+	elif reference_doctype == "Contract":
+		total_amount = ref_doc.get("amount")
+		outstanding_amount = ref_doc.get("outstanding_amount")
+		exchange_rate = 1
 	elif reference_doctype == "Donation":
 		total_amount = ref_doc.get("amount")
 		outstanding_amount = total_amount
@@ -1432,7 +1436,7 @@ def get_payment_entry(dt, dn, party_amount=None, bank_account=None, bank_amount=
 	pe.posting_date = nowdate()
 	pe.mode_of_payment = doc.get("mode_of_payment")
 	pe.party_type = party_type
-	pe.party = doc.get(scrub(party_type))
+	pe.party = doc.get(scrub(party_type)) or doc.party_name
 	pe.contact_person = doc.get("contact_person")
 	pe.contact_email = doc.get("contact_email")
 	pe.ensure_supplier_is_not_blocked()
@@ -1536,6 +1540,8 @@ def set_party_type(dt):
 		party_type = "Employee"
 	elif dt == "Fees":
 		party_type = "Student"
+	elif dt == "Contract":
+		party_type = "Customer"
 	elif dt == "Donation":
 		party_type = "Donor"
 	return party_type
@@ -1565,7 +1571,7 @@ def set_party_account_currency(dt, party_account, doc):
 	return party_account_currency
 
 def set_payment_type(dt, doc):
-	if (dt in ("Sales Order", "Donation") or (dt in ("Sales Invoice", "Fees", "Dunning") and doc.outstanding_amount > 0)) \
+	if (dt in ("Sales Order", "Donation", "Contract") or (dt in ("Sales Invoice", "Fees", "Dunning") and doc.outstanding_amount > 0)) \
 		or (dt=="Purchase Invoice" and doc.outstanding_amount < 0):
 			payment_type = "Receive"
 	else:
@@ -1594,6 +1600,9 @@ def set_grand_total_and_outstanding_amount(party_amount, dt, party_account_curre
 			outstanding_amount = (flt(doc.advance_amount) - flt(doc.paid_amount)) * flt(doc.exchange_rate)
 	elif dt == "Fees":
 		grand_total = doc.grand_total
+		outstanding_amount = doc.outstanding_amount
+	elif dt == "Contract":
+		grand_total = doc.amount
 		outstanding_amount = doc.outstanding_amount
 	elif dt == "Dunning":
 		grand_total = doc.grand_total
