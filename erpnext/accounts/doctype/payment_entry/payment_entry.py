@@ -247,7 +247,7 @@ class PaymentEntry(AccountsController):
 		if self.party_type == "Student":
 			valid_reference_doctypes = ("Fees")
 		elif self.party_type == "Customer":
-			valid_reference_doctypes = ("Sales Order", "Sales Invoice", "Journal Entry", "Dunning", "Contract")
+			valid_reference_doctypes = ("Sales Order", "Sales Invoice", "Journal Entry", "Dunning", "Contract", "Contract Loan")
 		elif self.party_type == "Supplier":
 			valid_reference_doctypes = ("Purchase Order", "Purchase Invoice", "Journal Entry")
 		elif self.party_type == "Employee":
@@ -277,9 +277,12 @@ class PaymentEntry(AccountsController):
 					else:
 						self.validate_journal_entry()
 
-					if d.reference_doctype in ("Sales Invoice", "Purchase Invoice", "Expense Claim", "Fees"):
+					if d.reference_doctype in ("Sales Invoice", "Purchase Invoice", "Expense Claim", "Fees", "Contract", "Contract Loan"):
 						if self.party_type == "Customer":
-							ref_party_account = get_party_account_based_on_invoice_discounting(d.reference_name) or ref_doc.debit_to
+							if d.reference_doctype in("Contract", "Contract Loan"):
+								ref_party_account = ref_doc.receivable_account
+							else:
+								ref_party_account = get_party_account_based_on_invoice_discounting(d.reference_name) or ref_doc.debit_to
 						elif self.party_type == "Student":
 							ref_party_account = ref_doc.receivable_account
 						elif self.party_type=="Supplier":
@@ -302,7 +305,7 @@ class PaymentEntry(AccountsController):
 			if not d.allocated_amount:
 				continue
 
-			if d.reference_doctype in ("Sales Invoice", "Purchase Invoice", "Fees"):
+			if d.reference_doctype in ("Sales Invoice", "Purchase Invoice", "Fees", "Contract", "Contract Loan"):
 				outstanding_amount, is_return = frappe.get_cached_value(d.reference_doctype, d.reference_name, ["outstanding_amount", "is_return"])
 				if outstanding_amount <= 0 and not is_return:
 					no_oustanding_refs.setdefault(d.reference_doctype, []).append(d)
@@ -1263,6 +1266,10 @@ def get_reference_details(reference_doctype, reference_name, party_account_curre
 		total_amount = ref_doc.get("amount")
 		outstanding_amount = ref_doc.get("outstanding_amount")
 		exchange_rate = 1
+	elif reference_doctype == "Contract Loan":
+		total_amount = ref_doc.get("total_payment")
+		outstanding_amount = ref_doc.get("outstanding_amount")
+		exchange_rate = 1
 	elif reference_doctype == "Donation":
 		total_amount = ref_doc.get("amount")
 		outstanding_amount = total_amount
@@ -1332,6 +1339,14 @@ def get_amounts_based_on_reference_doctype(reference_doctype, ref_doc, party_acc
 	total_amount, outstanding_amount, exchange_rate = None
 	if reference_doctype == "Fees":
 		total_amount = ref_doc.get("grand_total")
+		exchange_rate = 1
+		outstanding_amount = ref_doc.get("outstanding_amount")
+	elif reference_doctype == "Contract":
+		total_amount = ref_doc.get("amount")
+		exchange_rate = 1
+		outstanding_amount = ref_doc.get("outstanding_amount")
+	elif reference_doctype == "Contract Loan":
+		total_amount = ref_doc.get("total_payment")
 		exchange_rate = 1
 		outstanding_amount = ref_doc.get("outstanding_amount")
 	elif reference_doctype == "Dunning":
@@ -1458,6 +1473,10 @@ def get_payment_entry(dt, dn, party_amount=None, bank_account=None, bank_amount=
 	# only Purchase Invoice can be blocked individually
 	if doc.doctype == "Purchase Invoice" and doc.invoice_is_blocked():
 		frappe.msgprint(_('{0} is on hold till {1}').format(doc.name, doc.release_date))
+	elif doc.doctype == "Contract Loan":
+		pe.contract_loan = doc.name
+		pe.reference_no = "-"
+		pe.reference_date = pe.posting_date
 	else:
 		if (doc.doctype in ('Sales Invoice', 'Purchase Invoice')
 			and frappe.get_value('Payment Terms Template',
@@ -1540,7 +1559,7 @@ def set_party_type(dt):
 		party_type = "Employee"
 	elif dt == "Fees":
 		party_type = "Student"
-	elif dt == "Contract":
+	elif dt in ("Contract", "Contract Loan"):
 		party_type = "Customer"
 	elif dt == "Donation":
 		party_type = "Donor"
@@ -1552,6 +1571,10 @@ def set_party_account(dt, dn, doc, party_type):
 	elif dt == "Purchase Invoice":
 		party_account = doc.credit_to
 	elif dt == "Fees":
+		party_account = doc.receivable_account
+	elif dt == "Contract":
+		party_account = doc.receivable_account
+	elif dt == "Contract Loan":
 		party_account = doc.receivable_account
 	elif dt == "Employee Advance":
 		party_account = doc.advance_account
@@ -1571,7 +1594,7 @@ def set_party_account_currency(dt, party_account, doc):
 	return party_account_currency
 
 def set_payment_type(dt, doc):
-	if (dt in ("Sales Order", "Donation", "Contract") or (dt in ("Sales Invoice", "Fees", "Dunning") and doc.outstanding_amount > 0)) \
+	if (dt in ("Sales Order", "Donation", "Contract", "Contract Loan") or (dt in ("Sales Invoice", "Fees", "Dunning") and doc.outstanding_amount > 0)) \
 		or (dt=="Purchase Invoice" and doc.outstanding_amount < 0):
 			payment_type = "Receive"
 	else:
@@ -1603,6 +1626,9 @@ def set_grand_total_and_outstanding_amount(party_amount, dt, party_account_curre
 		outstanding_amount = doc.outstanding_amount
 	elif dt == "Contract":
 		grand_total = doc.amount
+		outstanding_amount = doc.outstanding_amount
+	elif dt == "Contract Loan":
+		grand_total = doc.total_payment
 		outstanding_amount = doc.outstanding_amount
 	elif dt == "Dunning":
 		grand_total = doc.grand_total
