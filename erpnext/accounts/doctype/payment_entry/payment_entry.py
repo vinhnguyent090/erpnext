@@ -1475,6 +1475,7 @@ def get_payment_entry(dt, dn, party_amount=None, bank_account=None, bank_amount=
 		frappe.msgprint(_('{0} is on hold till {1}').format(doc.name, doc.release_date))
 	elif doc.doctype == "Contract Loan":
 		pe.contract_loan = doc.name
+		pe.contract = frappe.get_value("Contract Loan", doc.name, "contract")
 		pe.reference_no = "-"
 		pe.reference_date = pe.posting_date
 	else:
