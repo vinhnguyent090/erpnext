@@ -110,3 +110,24 @@ def update_status_for_contracts():
 							contract.get("end_date"))
 
 		frappe.db.set_value("Contract", contract.get("name"), "status", status)
+
+
+def get_contract_list(doctype, txt, filters, limit_start, limit_page_length=20, order_by="modified"):
+	user = frappe.session.user
+	return frappe. db.sql('''
+		select *
+		from `tabContract`
+		where 1
+		order by name desc limit {0} , {1}'''
+		.format(limit_start, limit_page_length), as_dict = True)
+
+
+def get_list_context(context=None):
+	return {
+		"show_sidebar": True,
+		"show_search": True,
+		'no_breadcrumbs': True,
+		"title": _("Contract"),
+		"get_list": get_contract_list,
+		"row_template": "templates/includes/fee/fee_row.html"
+	}
