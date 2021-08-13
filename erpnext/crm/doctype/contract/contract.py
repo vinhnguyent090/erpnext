@@ -115,11 +115,13 @@ def update_status_for_contracts():
 def get_contract_list(doctype, txt, filters, limit_start, limit_page_length=20, order_by="modified"):
 	user = frappe.session.user
 	return frappe. db.sql('''
-		select *
-		from `tabContract`
-		where 1
+		select c.*
+		from `tabContract` c
+		where c.zone = (select name from `tabEmployee` e where e.user_id = %(user)s)
 		order by name desc limit {0} , {1}'''
-		.format(limit_start, limit_page_length), as_dict = True)
+		.format(limit_start, limit_page_length),
+		{'user': frappe.session.user},
+		as_dict = True)
 
 
 def get_list_context(context=None):
@@ -129,5 +131,5 @@ def get_list_context(context=None):
 		'no_breadcrumbs': True,
 		"title": _("Contract"),
 		"get_list": get_contract_list,
-		"row_template": "templates/includes/fee/fee_row.html"
+		# "row_template": "templates/includes/fee/fee_row.html"
 	}
