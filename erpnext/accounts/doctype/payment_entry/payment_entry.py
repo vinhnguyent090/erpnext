@@ -1263,7 +1263,7 @@ def get_reference_details(reference_doctype, reference_name, party_account_curre
 		exchange_rate = 1
 		outstanding_amount = ref_doc.get("outstanding_amount")
 	elif reference_doctype == "Contract":
-		total_amount = ref_doc.get("amount")
+		total_amount = ref_doc.get("grand_total")
 		outstanding_amount = ref_doc.get("outstanding_amount")
 		exchange_rate = 1
 	elif reference_doctype == "Contract Loan":
@@ -1626,7 +1626,7 @@ def set_grand_total_and_outstanding_amount(party_amount, dt, party_account_curre
 		grand_total = doc.grand_total
 		outstanding_amount = doc.outstanding_amount
 	elif dt == "Contract":
-		grand_total = doc.amount
+		grand_total = doc.grand_total
 		outstanding_amount = doc.outstanding_amount
 	elif dt == "Contract Loan":
 		grand_total = doc.total_payment
