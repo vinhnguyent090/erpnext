@@ -3,15 +3,30 @@
 # For license information, please see license.txt
 
 from __future__ import unicode_literals
-import frappe, erpnext
-from frappe.model.document import Document
+
+import frappe
 from dateutil.relativedelta import relativedelta
-from frappe.utils import cint, flt, add_days, getdate, add_to_date, DATE_FORMAT, date_diff, comma_and
 from frappe import _
+from frappe.desk.reportview import get_filters_cond, get_match_cond
+from frappe.model.document import Document
+from frappe.utils import (
+	DATE_FORMAT,
+	add_days,
+	add_to_date,
+	cint,
+	comma_and,
+	date_diff,
+	flt,
+	getdate,
+)
+
+import erpnext
+from erpnext.accounts.doctype.accounting_dimension.accounting_dimension import (
+	get_accounting_dimensions,
+)
 from erpnext.accounts.utils import get_fiscal_year
 from erpnext.hr.doctype.employee.employee import get_holiday_list_for_employee
-from frappe.desk.reportview import get_match_cond, get_filters_cond
-from erpnext.accounts.doctype.accounting_dimension.accounting_dimension import get_accounting_dimensions
+
 
 class PayrollEntry(Document):
 	def onload(self):
@@ -117,7 +132,6 @@ class PayrollEntry(Document):
 			Creates salary slip for selected employees if already not created
 		"""
 		self.check_permission('write')
-		self.created = 1
 		employees = [emp.employee for emp in self.employees]
 		if employees:
 			args = frappe._dict({
@@ -530,7 +544,8 @@ def get_end_date(start_date, frequency):
 def get_month_details(year, month):
 	ysd = frappe.db.get_value("Fiscal Year", year, "year_start_date")
 	if ysd:
-		import calendar, datetime
+		import calendar
+		import datetime
 		diff_mnt = cint(month)-cint(ysd.month)
 		if diff_mnt<0:
 			diff_mnt = 12-int(ysd.month)+cint(month)
@@ -686,7 +701,7 @@ def employee_query(doctype, txt, searchfield, start, page_len, filters):
 
 	if filters.start_date and filters.end_date:
 		employee_list = get_employee_list(filters)
-		emp = filters.get('employees')
+		emp = filters.get('employees') or []
 		include_employees = [employee.employee for employee in employee_list if employee.employee not in emp]
 		filters.pop('start_date')
 		filters.pop('end_date')
