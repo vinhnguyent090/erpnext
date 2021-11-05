@@ -1062,9 +1062,27 @@
    "link_type": "Report",
    "onboard": 0,
    "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Payment Reconcile",
+   "link_to": "Payment Reconciliation Payment",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "payment Invoice Reconcile",
+   "link_to": "Payment Reconciliation Invoice",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
   }
  ],
- "modified": "2021-06-10 03:17:31.427945",
+ "modified": "2021-08-24 19:55:35.632486",
  "modified_by": "Administrator",
  "module": "Accounts",
  "name": "Accounting",

@@ -11,6 +11,12 @@
   },
   {
    "card": "Total Outgoing Payment"
+  },
+  {
+   "card": "S\u1ed1 d\u01b0 TK Linh"
+  },
+  {
+   "card": "Kha\u0301ch ha\u0300ng tra\u0309 ti\u00ea\u0300n tr\u01b0\u01a1\u0301c"
   }
  ],
  "charts": [
@@ -50,7 +56,7 @@
  "idx": 0,
  "is_default": 0,
  "is_standard": 1,
- "modified": "2020-07-22 13:07:34.540574",
+ "modified": "2021-10-23 20:54:26.594327",
  "modified_by": "Administrator",
  "module": "Accounts",
  "name": "Accounts",

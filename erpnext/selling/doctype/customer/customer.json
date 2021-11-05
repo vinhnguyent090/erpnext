@@ -83,6 +83,7 @@
   {
    "fieldname": "naming_series",
    "fieldtype": "Select",
+   "in_global_search": 1,
    "label": "Series",
    "no_copy": 1,
    "options": "CUST-.YYYY.-",
@@ -500,7 +501,7 @@
  "image_field": "image",
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2021-01-28 12:54:57.258959",
+ "modified": "2021-07-25 07:58:47.717034",
  "modified_by": "Administrator",
  "module": "Selling",
  "name": "Customer",

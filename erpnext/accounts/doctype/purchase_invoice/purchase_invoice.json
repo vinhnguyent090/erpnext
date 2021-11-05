@@ -350,6 +350,7 @@
    "label": "Supplier Invoice Details"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "bill_no",
    "fieldtype": "Data",
    "label": "Supplier Invoice No",
@@ -1383,7 +1384,7 @@
  "idx": 204,
  "is_submittable": 1,
  "links": [],
- "modified": "2021-06-15 18:20:56.806195",
+ "modified": "2021-11-04 12:04:16.519625",
  "modified_by": "Administrator",
  "module": "Accounts",
  "name": "Purchase Invoice",

@@ -1,0 +1,22 @@
+{
+ "creation": "2021-07-21 22:08:22.015255",
+ "docstatus": 0,
+ "doctype": "Number Card",
+ "filters_json": "{\"company\":\"CTy TNHH An Toa\u0300n Th\u01b0\u0323c Ph\u00e2\u0309m Ha\u0300 N\u00f4\u0323i\",\"from_date\":\"2021-06-01\",\"to_date\":\"2021-07-21\",\"account\":[\"112linh - Quy\u0303 Linh qua\u0309n ly\u0301 - ATTP\"],\"party\":[],\"group_by\":\"Group by Voucher (Consolidated)\",\"cost_center\":[],\"project\":[]}",
+ "function": "Count",
+ "idx": 0,
+ "is_public": 0,
+ "is_standard": 1,
+ "label": "S\u1ed1 d\u01b0 TK Linh",
+ "modified": "2021-07-21 22:13:28.577893",
+ "modified_by": "phuonglinhnguyen977@gmail.com",
+ "module": "Accounts",
+ "name": "S\u1ed1 d\u01b0 TK Linh",
+ "owner": "Administrator",
+ "report_field": "balance",
+ "report_function": "Sum",
+ "report_name": "General Ledger",
+ "show_percentage_stats": 1,
+ "stats_time_interval": "Daily",
+ "type": "Report"
+}

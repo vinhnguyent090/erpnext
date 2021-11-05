@@ -139,7 +139,13 @@
   "publish_in_hub",
   "hub_category_to_publish",
   "hub_warehouse",
-  "synced_with_hub"
+  "synced_with_hub",
+  "lft",
+  "rgt",
+  "is_group",
+  "old_parent",
+  "parent_item",
+  "amended_from"
  ],
  "fields": [
   {
@@ -1058,6 +1064,49 @@
    "fieldname": "website_image_alt",
    "fieldtype": "Data",
    "label": "Image Description"
+  },
+  {
+   "fieldname": "lft",
+   "fieldtype": "Int",
+   "hidden": 1,
+   "label": "Left",
+   "no_copy": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "rgt",
+   "fieldtype": "Int",
+   "hidden": 1,
+   "label": "Right",
+   "no_copy": 1,
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "is_group",
+   "fieldtype": "Check",
+   "label": "Is Group"
+  },
+  {
+   "fieldname": "old_parent",
+   "fieldtype": "Link",
+   "label": "Old Parent",
+   "options": "Item"
+  },
+  {
+   "fieldname": "parent_item",
+   "fieldtype": "Link",
+   "label": "Parent Item",
+   "options": "Item"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Item",
+   "print_hide": 1,
+   "read_only": 1
   }
  ],
  "has_web_view": 1,
@@ -1067,10 +1116,11 @@
  "index_web_pages_for_search": 1,
  "links": [],
  "max_attachments": 1,
- "modified": "2021-03-18 14:04:38.575519",
+ "modified": "2021-08-01 10:39:14.446821",
  "modified_by": "Administrator",
  "module": "Stock",
  "name": "Item",
+ "nsm_parent_field": "parent_item",
  "owner": "Administrator",
  "permissions": [
   {

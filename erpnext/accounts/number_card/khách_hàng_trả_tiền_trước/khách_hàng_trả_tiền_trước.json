@@ -1,0 +1,22 @@
+{
+ "creation": "2021-07-11 07:25:37.985396",
+ "docstatus": 0,
+ "doctype": "Number Card",
+ "filters_json": "{\"company\":\"CTy TNHH An Toa\u0300n Th\u01b0\u0323c Ph\u00e2\u0309m Ha\u0300 N\u00f4\u0323i\",\"fiscal_year\":\"2021\",\"from_date\":\"2021-01-01\",\"to_date\":\"2021-12-31\",\"party_type\":\"Customer\"}",
+ "function": "Count",
+ "idx": 0,
+ "is_public": 0,
+ "is_standard": 1,
+ "label": "Kha\u0301ch ha\u0300ng tra\u0309 ti\u00ea\u0300n tr\u01b0\u01a1\u0301c",
+ "modified": "2021-10-23 20:54:26.550068",
+ "modified_by": "Administrator",
+ "module": "Accounts",
+ "name": "Kha\u0301ch ha\u0300ng tra\u0309 ti\u00ea\u0300n tr\u01b0\u01a1\u0301c",
+ "owner": "Administrator",
+ "report_field": "closing_credit",
+ "report_function": "Sum",
+ "report_name": "Trial Balance for Party",
+ "show_percentage_stats": 1,
+ "stats_time_interval": "Daily",
+ "type": "Report"
+}
