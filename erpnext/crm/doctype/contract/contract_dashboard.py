@@ -10,12 +10,13 @@ def get_data():
 		'fieldname': 'contract',
 		'non_standard_fieldnames': {
 			'Coupons': 'reference_name',
-			'Contract Repayment': 'against_contract'
+			'Contract Repayment': 'against_contract',
+			'Contract Interest Payment': 'against_contract',
 		},
 		'transactions': [
 			{
 				'label': _('Contract'),
-				'items': ['Contract Loan','Contract Repayment']
+				'items': ['Contract Loan','Contract Interest Payment','Contract Repayment']
 			},
 			{
 				'label': _('Links'),
