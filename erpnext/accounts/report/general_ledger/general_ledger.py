@@ -424,7 +424,7 @@ def get_accountwise_gle(filters, accounting_dimensions, gl_entries, gle_map):
 			if filters.get("group_by") != 'Group by Voucher (Consolidated)':
 				gle_map[gle.get(group_by)].entries.append(gle)
 			elif filters.get("group_by") == 'Group by Voucher (Consolidated)':
-				keylist = [gle.get("voucher_type"), gle.get("voucher_no"), gle.get("account")]
+				keylist = [gle.get("voucher_type"), gle.get("voucher_no"), gle.get("account"), gle.get("against")]
 				for dim in accounting_dimensions:
 					keylist.append(gle.get(dim))
 				keylist.append(gle.get("cost_center"))
