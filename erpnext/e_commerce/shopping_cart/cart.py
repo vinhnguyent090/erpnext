@@ -464,6 +464,7 @@ def get_party(user=None):
 
 		contact = frappe.new_doc("Contact")
 		contact.update({
+			"is_primary_contact": 1,
 			"first_name": fullname,
 			"email_ids": [{"email_id": user, "is_primary": 1}]
 		})
