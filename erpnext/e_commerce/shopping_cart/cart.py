@@ -175,7 +175,7 @@ def update_cart(item_code, qty, additional_notes=None, with_items=False):
 		}
 	else:
 		return {
-			'name': quotation.name
+			'name': quotation.name if quotation or None
 		}
 
 @frappe.whitelist()
