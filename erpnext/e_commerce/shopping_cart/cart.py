@@ -174,9 +174,14 @@ def update_cart(item_code, qty, additional_notes=None, with_items=False):
 				context)
 		}
 	else:
-		return {
-			'name': quotation.name if quotation or None
-		}
+		if quotation:
+			return {
+				'name': quotation.name
+			}
+		else:
+			return {
+				'name': None
+			}
 
 @frappe.whitelist()
 def get_shopping_cart_menu(context=None):
