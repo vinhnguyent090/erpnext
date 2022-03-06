@@ -44,7 +44,8 @@
   "section_break_14",
   "price_discount_slabs",
   "section_break_15",
-  "product_discount_slabs"
+  "product_discount_slabs",
+  "amended_from"
  ],
  "fields": [
   {
@@ -275,10 +276,20 @@
    "fieldtype": "Table",
    "label": "Promotional Scheme Product Discount",
    "options": "Promotional Scheme Product Discount"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Promotional Scheme",
+   "print_hide": 1,
+   "read_only": 1
   }
  ],
+ "is_submittable": 1,
  "links": [],
- "modified": "2021-05-06 16:20:22.039078",
+ "modified": "2021-11-09 06:55:19.210843",
  "modified_by": "Administrator",
  "module": "Accounts",
  "name": "Promotional Scheme",

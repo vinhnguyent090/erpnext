@@ -1082,8 +1082,8 @@
    "type": "Link"
   }
  ],
- "modified": "2021-08-23 16:06:34.167267",
- "modified_by": "Administrator",
+ "modified": "2021-12-30 09:00:31.084769",
+ "modified_by": "vuongkhanhtoan1976@gmail.com",
  "module": "Accounts",
  "name": "Accounting",
  "onboarding": "Accounts",
@@ -1102,8 +1102,11 @@
    "type": "DocType"
   },
   {
+   "color": "#f50505",
+   "format": "{} Qu\u00e1 h\u1ea1n",
    "label": "Purchase Invoice",
    "link_to": "Purchase Invoice",
+   "stats_filter": "{\"status\":[\"=\",\"Overdue\"]}",
    "type": "DocType"
   },
   {

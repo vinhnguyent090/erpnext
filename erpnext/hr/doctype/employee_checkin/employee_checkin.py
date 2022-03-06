@@ -17,9 +17,10 @@ from erpnext.hr.utils import validate_active_employee
 
 class EmployeeCheckin(Document):
 	def validate(self):
-		validate_active_employee(self.employee)
-		self.validate_duplicate_log()
-		self.fetch_shift()
+		# validate_active_employee(self.employee)
+		# self.validate_duplicate_log()
+		# self.fetch_shift()
+		pass
 
 	def validate_duplicate_log(self):
 		doc = frappe.db.exists('Employee Checkin', {

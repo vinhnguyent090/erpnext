@@ -19,9 +19,9 @@ def show_cart_count():
 def set_cart_count(login_manager):
 	role, parties = check_customer_or_supplier()
 	if role == 'Supplier': return
-	if show_cart_count():
-		from erpnext.e_commerce.shopping_cart.cart import set_cart_count
-		set_cart_count()
+	# if show_cart_count():
+	# 	from erpnext.e_commerce.shopping_cart.cart import set_cart_count
+	# 	set_cart_count()
 
 def clear_cart_count(login_manager):
 	if show_cart_count():

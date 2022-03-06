@@ -41,6 +41,10 @@
   {
    "chart": "Bank Balance",
    "width": "Full"
+  },
+  {
+   "chart": "G\u00f3p v\u1ed1n",
+   "width": "Half"
   }
  ],
  "creation": "2020-07-17 11:25:34.796608",
@@ -50,8 +54,8 @@
  "idx": 0,
  "is_default": 0,
  "is_standard": 1,
- "modified": "2020-07-22 13:07:34.540574",
- "modified_by": "Administrator",
+ "modified": "2021-12-21 09:55:07.180877",
+ "modified_by": "tamyhanh.aiav@gmail.com",
  "module": "Accounts",
  "name": "Accounts",
  "owner": "Administrator"
