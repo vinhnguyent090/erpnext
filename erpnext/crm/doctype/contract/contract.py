@@ -24,7 +24,7 @@ class Contract(Document):
 
 	def validate(self):
 		self.validate_dates()
-		self.update_contract_status()
+		# self.update_contract_status()
 		self.update_fulfilment_status()
 
 	def before_submit(self):

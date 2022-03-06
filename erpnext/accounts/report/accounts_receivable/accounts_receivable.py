@@ -771,9 +771,12 @@ class ReceivablePayableReport(object):
 		self.add_column(label=_(self.party_type), fieldname='party',
 			fieldtype='Link', options=self.party_type, width=180)
 
-		if self.party_naming_by == "Naming Series":
-			self.add_column(_('{0} Name').format(self.party_type),
-				fieldname = scrub(self.party_type) + '_name', fieldtype='Data')
+		# if self.party_naming_by == "Naming Series":
+		# 	self.add_column(_('{0} Name').format(self.party_type),
+		# 		fieldname = scrub(self.party_type) + '_name', fieldtype='Data')
+
+		self.add_column(_('{0} Name').format(self.party_type),
+				fieldname = scrub(self.party_type) + '_name', fieldtype='Data', width=300)
 
 		if self.party_type == 'Customer':
 			self.add_column(_("Customer Contact"), fieldname='customer_primary_contact',

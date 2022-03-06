@@ -15,7 +15,7 @@ other_fields = ['min_qty', 'max_qty', 'min_amt',
 	'max_amt', 'priority','warehouse', 'threshold_percentage', 'rule_description']
 
 price_discount_fields = ['rate_or_discount', 'apply_discount_on', 'apply_discount_on_rate',
-	'rate', 'discount_amount', 'discount_percentage', 'validate_applied_rule', 'apply_multiple_pricing_rules']
+	'rate', 'discount_amount', 'discount_percentage', 'apply_multiple_pricing_rules']
 
 product_discount_fields = ['free_item', 'free_qty', 'free_item_uom',
 	'free_item_rate', 'same_item', 'is_recursive', 'apply_multiple_pricing_rules']

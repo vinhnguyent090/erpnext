@@ -7,7 +7,7 @@ pycountry~=20.7.3
 PyGithub~=1.54.1
 python-stdnum~=1.16
 python-youtube~=0.8.0
-taxjar~=1.9.2
+taxjar==1.9.0 
 tweepy~=3.10.0
 Unidecode~=1.2.0
 redisearch==2.0.0

@@ -12,7 +12,8 @@ def get_data():
 			'Quotation': 'party_name',
 			'Opportunity': 'party_name',
 			'Bank Account': 'party',
-			'Subscription': 'party'
+			'Subscription': 'party',
+			'Contract': 'party_name'
 		},
 		'dynamic_links': {
 			'party_name': ['Customer', 'quotation_to']
@@ -24,7 +25,7 @@ def get_data():
 			},
 			{
 				'label': _('Orders'),
-				'items': ['Sales Order', 'Delivery Note', 'Sales Invoice']
+				'items': ['Sales Order', 'Delivery Note', 'Sales Invoice', 'Contract']
 			},
 			{
 				'label': _('Payments'),
