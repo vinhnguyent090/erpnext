@@ -720,7 +720,8 @@ def insert_item_price(args):
 					"price_list": args.price_list,
 					"item_code": args.item_code,
 					"currency": args.currency,
-					"price_list_rate": price_list_rate
+					"price_list_rate": price_list_rate,
+					"uom": args.uom if args.uom else None 
 				})
 				item_price.insert()
 				frappe.msgprint(_("Item Price added for {0} in Price List {1}").format(args.item_code,

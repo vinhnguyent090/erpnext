@@ -9,7 +9,8 @@ def get_data():
 		'fieldname': 'employee',
 		'non_standard_fieldnames': {
 			'Bank Account': 'party',
-			'Employee Grievance': 'raised_by'
+			'Employee Grievance': 'raised_by',
+			'Journal Entry': 'party'
 		},
 		'transactions': [
 			{
@@ -30,7 +31,7 @@ def get_data():
 			},
 			{
 				'label': _('Expense'),
-				'items': ['Expense Claim', 'Travel Request', 'Employee Advance']
+				'items': ['Expense Claim', 'Travel Request', 'Employee Advance', 'Journal Entry']
 			},
 			{
 				'label': _('Benefit'),

@@ -173,9 +173,14 @@ def update_cart(item_code, qty, additional_notes=None, with_items=False):
 				context)
 		}
 	else:
-		return {
-			'name': quotation.name
-		}
+		if quotation:
+			return {
+				'name': quotation.name
+			}
+		else:
+			return {
+				'name': None
+			}
 
 @frappe.whitelist()
 def get_shopping_cart_menu(context=None):
@@ -485,6 +490,7 @@ def get_party(user=None):
 
 		contact = frappe.new_doc("Contact")
 		contact.update({
+			"is_primary_contact": 1,
 			"first_name": fullname,
 			"email_ids": [{"email_id": user, "is_primary": 1}]
 		})
