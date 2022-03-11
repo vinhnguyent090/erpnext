@@ -10,7 +10,7 @@ def get_data():
 		'transactions': [
 			{
 				'label': _('Project'),
-				'items': ['Task', 'Timesheet', 'Expense Claim', 'Issue' , 'Project Update']
+				'items': ['Task', 'Timesheet', 'Employee Advance', 'Expense Claim', 'Issue' , 'Project Update']
 			},
 			{
 				'label': _('Material'),
