@@ -8,6 +8,7 @@ def get_data():
 		'heatmap_message': _('This is based on the attendance of this Employee'),
 		'fieldname': 'employee',
 		'non_standard_fieldnames': {
+			'ToDo': 'reference_name',
 			'Bank Account': 'party',
 			'Employee Grievance': 'raised_by',
 			'Journal Entry': 'party'
@@ -43,7 +44,7 @@ def get_data():
 			},
 			{
 				'label': _('Training'),
-				'items': ['Training Event', 'Training Result', 'Training Feedback', 'Employee Skill Map']
+				'items': ['Training Event', 'Training Result', 'Training Feedback', 'Employee Skill Map', 'ToDo']
 			},
 			{
 				'label': _('Evaluation'),
