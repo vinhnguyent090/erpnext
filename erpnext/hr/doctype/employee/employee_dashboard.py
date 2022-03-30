@@ -8,6 +8,7 @@ def get_data():
 		'heatmap_message': _('This is based on the attendance of this Employee'),
 		'fieldname': 'employee',
 		'non_standard_fieldnames': {
+			'Asset': 'custodian',
 			'ToDo': 'reference_name',
 			'Bank Account': 'party',
 			'Employee Grievance': 'raised_by',
@@ -49,6 +50,10 @@ def get_data():
 			{
 				'label': _('Evaluation'),
 				'items': ['Appraisal']
+			},
+				{
+				'label': _('Asset'),
+				'items': ['Asset']
 			},
 		]
 	}
