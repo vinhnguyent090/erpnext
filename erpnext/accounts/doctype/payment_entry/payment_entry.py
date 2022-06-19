@@ -1836,14 +1836,16 @@ def get_payment_entry(dt, dn, party_amount=None, bank_account=None, bank_amount=
 	pe.contact_email = doc.get("contact_email")
 	pe.ensure_supplier_is_not_blocked()
 
-	pe.paid_from = party_account if payment_type == "Receive" else bank.account
-	pe.paid_to = party_account if payment_type == "Pay" else bank.account
-	pe.paid_from_account_currency = (
-		party_account_currency if payment_type == "Receive" else bank.account_currency
-	)
-	pe.paid_to_account_currency = (
-		party_account_currency if payment_type == "Pay" else bank.account_currency
-	)
+	pe.paid_from = party_account if payment_type=="Receive" else bank.account
+	
+	if dt == "Contract Loan":
+		pe.paid_to = doc.payment_account
+	else:
+		pe.paid_to = party_account if payment_type=="Pay" else bank.account
+
+	pe.paid_from_account_currency = party_account_currency \
+		if payment_type=="Receive" else bank.account_currency
+	pe.paid_to_account_currency = party_account_currency if payment_type=="Pay" else bank.account_currency
 	pe.paid_amount = paid_amount
 	pe.received_amount = received_amount
 	pe.letter_head = doc.get("letter_head")

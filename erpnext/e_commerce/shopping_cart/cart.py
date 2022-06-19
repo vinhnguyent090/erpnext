@@ -188,7 +188,14 @@ def update_cart(item_code, qty, additional_notes=None, with_items=False):
 			),
 		}
 	else:
-		return {"name": quotation.name}
+		if quotation:
+			return {
+				'name': quotation.name
+			}
+		else:
+			return {
+				'name': None
+			}
 
 
 @frappe.whitelist()
@@ -525,8 +532,11 @@ def get_party(user=None):
 		customer.insert(ignore_permissions=True)
 
 		contact = frappe.new_doc("Contact")
-		contact.update({"first_name": fullname, "email_ids": [{"email_id": user, "is_primary": 1}]})
-		contact.append("links", dict(link_doctype="Customer", link_name=customer.name))
+		contact.update({
+			"first_name": fullname,
+			"email_ids": [{"email_id": user, "is_primary": 1}]
+		})
+		contact.append('links', dict(link_doctype='Customer', link_name=customer.name))
 		contact.flags.ignore_mandatory = True
 		contact.insert(ignore_permissions=True)
 
