@@ -499,7 +499,7 @@ scheduler_events = {
 		"erpnext.setup.doctype.company.company.cache_companies_monthly_sales_history",
 		"erpnext.assets.doctype.asset.asset.update_maintenance_status",
 		"erpnext.assets.doctype.asset.asset.make_post_gl_entry",
-		"erpnext.crm.doctype.contract.contract.update_status_for_contracts",
+		# "erpnext.crm.doctype.contract.contract.update_status_for_contracts",
 		"erpnext.projects.doctype.project.project.update_project_sales_billing",
 		"erpnext.projects.doctype.project.project.send_project_status_email_to_users",
 		"erpnext.quality_management.doctype.quality_review.quality_review.review",

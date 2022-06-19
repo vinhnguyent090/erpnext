@@ -932,13 +932,22 @@ class JournalEntry(AccountsController):
 				else:
 					update_reimbursed_amount(doc, d.debit)
 
+
+	# def validate_expense_claim(self):
+	# 	for d in self.accounts:
+	# 		if d.reference_type=="Expense Claim":
+	# 			sanctioned_amount, reimbursed_amount = frappe.db.get_value("Expense Claim",
+	# 				d.reference_name, ("total_sanctioned_amount", "total_amount_reimbursed"))
+	# 			pending_amount = flt(sanctioned_amount) - flt(reimbursed_amount)
+	# 			if d.debit > pending_amount:
+	# 				frappe.throw(_("Row No {0}: Amount cannot be greater than Pending Amount against Expense Claim {1}. Pending Amount is {2}").format(d.idx, d.reference_name, pending_amount))
+	
 	def validate_expense_claim(self):
 		for d in self.accounts:
-			if d.reference_type == "Expense Claim":
-				sanctioned_amount, reimbursed_amount = frappe.db.get_value(
-					"Expense Claim", d.reference_name, ("total_sanctioned_amount", "total_amount_reimbursed")
-				)
-				pending_amount = flt(sanctioned_amount) - flt(reimbursed_amount)
+			if d.reference_type=="Expense Claim":
+				grand_total, reimbursed_amount = frappe.db.get_value("Expense Claim",
+					d.reference_name, ("grand_total", "total_amount_reimbursed"))
+				pending_amount = flt(grand_total) - flt(reimbursed_amount)
 				if d.debit > pending_amount:
 					frappe.throw(
 						_(

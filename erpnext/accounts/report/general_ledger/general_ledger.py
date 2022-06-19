@@ -517,6 +517,7 @@ def get_account_type_map(company):
 def get_result_as_list(data, filters):
 	balance, balance_in_account_currency = 0, 0
 	inv_details = get_supplier_invoice_details()
+	supplier_details, customer_details, employee_details = get_party_details()
 
 	for d in data:
 		if not d.get("posting_date"):
@@ -525,8 +526,20 @@ def get_result_as_list(data, filters):
 		balance = get_balance(d, balance, "debit", "credit")
 		d["balance"] = balance
 
-		d["account_currency"] = filters.account_currency
-		d["bill_no"] = inv_details.get(d.get("against_voucher"), "")
+		d['account_currency'] = filters.account_currency
+		d['bill_no'] = inv_details.get(d.get('against_voucher'), '')
+		
+		#Vincent get party_name
+		party_name = supplier_details.get(d.get('against'), '')
+		if not party_name:
+			party_name = customer_details.get(d.get('against'), '')
+		if not party_name:
+			party_name = employee_details.get(d.get('against'), '')
+		
+		if party_name == d.get('against'):
+			party_name = ""
+		d['party_name'] = party_name
+		
 
 	return data
 
@@ -541,7 +554,6 @@ def get_supplier_invoice_details():
 		inv_details[d.name] = d.bill_no
 
 	return inv_details
-
 
 def get_balance(row, balance, debit_field, credit_field):
 	balance += row.get(debit_field, 0) - row.get(credit_field, 0)

@@ -252,8 +252,9 @@ def is_party_name_visible(filters):
 		else:
 			party_naming_by = frappe.db.get_single_value("Buying Settings", "supp_master_name")
 
-		if party_naming_by == "Naming Series":
-			show_party_name = True
+		# if party_naming_by == "Naming Series":
+		# 	show_party_name = True
+		show_party_name = True
 	else:
 		show_party_name = True
 

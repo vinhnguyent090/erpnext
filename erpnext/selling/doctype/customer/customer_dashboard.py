@@ -14,6 +14,7 @@ def get_data():
 			"Opportunity": "party_name",
 			"Bank Account": "party",
 			"Subscription": "party",
+			'Contract': 'party_name'
 		},
 		"dynamic_links": {"party_name": ["Customer", "quotation_to"]},
 		"transactions": [
@@ -24,8 +25,29 @@ def get_data():
 				"label": _("Support"),
 				"items": ["Issue", "Maintenance Visit", "Installation Note", "Warranty Claim"],
 			},
-			{"label": _("Projects"), "items": ["Project"]},
-			{"label": _("Pricing"), "items": ["Pricing Rule"]},
-			{"label": _("Subscriptions"), "items": ["Subscription"]},
-		],
+			{
+				'label': _('Orders'),
+				'items': ['Sales Order', 'Delivery Note', 'Sales Invoice', 'Contract']
+			},
+			{
+				'label': _('Payments'),
+				'items': ['Payment Entry', 'Bank Account']
+			},
+			{
+				'label': _('Support'),
+				'items': ['Issue', 'Maintenance Visit', 'Installation Note', 'Warranty Claim']
+			},
+			{
+				'label': _('Projects'),
+				'items': ['Project']
+			},
+			{
+				'label': _('Pricing'),
+				'items': ['Pricing Rule']
+			},
+			{
+				'label': _('Subscriptions'),
+				'items': ['Subscription']
+			}
+		]
 	}

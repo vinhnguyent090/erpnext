@@ -348,11 +348,11 @@ def make_bank_entry(dt, dn):
 	if not default_bank_cash_account:
 		default_bank_cash_account = get_default_bank_cash_account(expense_claim.company, "Cash")
 
-	payable_amount = (
-		flt(expense_claim.total_sanctioned_amount)
-		- flt(expense_claim.total_amount_reimbursed)
-		- flt(expense_claim.total_advance_amount)
-	)
+	# payable_amount = flt(expense_claim.total_sanctioned_amount) \
+	# 	- flt(expense_claim.total_amount_reimbursed) - flt(expense_claim.total_advance_amount)
+
+	payable_amount = flt(expense_claim.grand_total) \
+		- flt(expense_claim.total_amount_reimbursed) - flt(expense_claim.total_advance_amount)
 
 	je = frappe.new_doc("Journal Entry")
 	je.voucher_type = "Bank Entry"
