@@ -649,3 +649,18 @@ def get_columns(filters):
 	)
 
 	return columns
+
+def get_party_details():
+	supplier_details = {}	
+	for d in frappe.db.sql(""" select name, supplier_name from `tabSupplier` """, as_dict=1):
+		supplier_details[d.name] = d.supplier_name
+	
+	customer_details = {}
+	for d in frappe.db.sql(""" select name, customer_name from `tabCustomer` """, as_dict=1):
+		customer_details[d.name] = d.customer_name
+
+	employee_details = {}
+	for d in frappe.db.sql(""" select name, employee_name from `tabEmployee` """, as_dict=1):
+		employee_details[d.name] = d.employee_name
+
+	return supplier_details, customer_details, employee_details 
