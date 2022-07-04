@@ -61,7 +61,8 @@ frappe.ui.form.on("Item Group", {
 	},
 
 	refresh: function(frm) {
-		frm.trigger("set_root_readonly");
+		// Vincent
+		// frm.trigger("set_root_readonly");
 		frm.add_custom_button(__("Item Group Tree"), function() {
 			frappe.set_route("Tree", "Item Group");
 		});
