@@ -47,7 +47,7 @@ filters_config = "erpnext.startup.filters.get_filters_config"
 additional_print_settings = "erpnext.controllers.print_settings.get_print_settings"
 
 on_session_creation = [
-	"erpnext.portal.utils.create_customer_or_supplier",
+	# "erpnext.portal.utils.create_customer_or_supplier",
 	"erpnext.e_commerce.shopping_cart.utils.set_cart_count",
 ]
 on_logout = "erpnext.e_commerce.shopping_cart.utils.clear_cart_count"

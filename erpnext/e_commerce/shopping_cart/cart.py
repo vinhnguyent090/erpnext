@@ -488,6 +488,10 @@ def set_taxes(quotation, cart_settings):
 
 
 def get_party(user=None):
+	#Vincent user get_party from vnmlm
+	from vnmlm.utils.cart import get_party
+	return get_party(user)
+
 	if not user:
 		user = frappe.session.user
 
