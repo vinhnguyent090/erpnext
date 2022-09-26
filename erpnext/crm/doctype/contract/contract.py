@@ -39,10 +39,12 @@ class Contract(Document):
 			frappe.throw(_("End Date cannot be before Start Date."))
 
 	def update_contract_status(self):
-		if self.is_signed:
-			self.status = get_status(self.start_date, self.end_date)
-		else:
-			self.status = "Unsigned"
+		#Vincent disable update status
+		pass
+		# if self.is_signed:
+		# 	self.status = get_status(self.start_date, self.end_date)
+		# else:
+		# 	self.status = "Unsigned"
 
 	def update_fulfilment_status(self):
 		fulfilment_status = "N/A"
