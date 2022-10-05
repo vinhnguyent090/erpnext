@@ -14,11 +14,12 @@ def get_data():
 			"Opportunity": "party_name",
 			"Bank Account": "party",
 			"Subscription": "party",
+			"Contract": "party_name"
 		},
 		"dynamic_links": {"party_name": ["Customer", "quotation_to"]},
 		"transactions": [
 			{"label": _("Pre Sales"), "items": ["Opportunity", "Quotation"]},
-			{"label": _("Orders"), "items": ["Sales Order", "Delivery Note", "Sales Invoice"]},
+			{"label": _("Orders"), "items": ["Sales Order", "Delivery Note", "Sales Invoice", "Contract"]},
 			{"label": _("Payments"), "items": ["Payment Entry", "Bank Account"]},
 			{
 				"label": _("Support"),
