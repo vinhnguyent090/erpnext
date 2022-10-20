@@ -49,7 +49,7 @@ erpnext.accounts.PaymentReconciliationController = class PaymentReconciliationCo
 		});
 	}
 
-	refresh() {
+	refresh_form() {
 		this.frm.disable_save();
 
 		this.frm.set_df_property('invoices', 'cannot_delete_rows', true);
@@ -109,7 +109,7 @@ erpnext.accounts.PaymentReconciliationController = class PaymentReconciliationCo
 					if (!r.exc && r.message) {
 						this.frm.set_value("receivable_payable_account", r.message);
 					}
-					this.frm.refresh();
+					this.frm.trigger("refresh_form");
 
 				}
 			});
@@ -118,7 +118,7 @@ erpnext.accounts.PaymentReconciliationController = class PaymentReconciliationCo
 
 	receivable_payable_account() {
 		this.frm.trigger("clear_child_tables");
-		this.frm.refresh();
+		this.frm.trigger("refresh_form");
 	}
 
 	clear_child_tables() {
@@ -141,7 +141,7 @@ erpnext.accounts.PaymentReconciliationController = class PaymentReconciliationCo
 				} else if (!(this.frm.doc.payments.length)) {
 					frappe.throw({message: __("No Unreconciled Payments found for this party")});
 				}
-				this.frm.refresh();
+				this.frm.trigger("refresh_form");
 			}
 		});
 
@@ -164,7 +164,7 @@ erpnext.accounts.PaymentReconciliationController = class PaymentReconciliationCo
 				invoices: invoices
 			},
 			callback: () => {
-				this.frm.refresh();
+				this.frm.trigger("refresh_form");
 			}
 		});
 	}
@@ -258,7 +258,7 @@ erpnext.accounts.PaymentReconciliationController = class PaymentReconciliationCo
 			method: 'reconcile',
 			callback: () => {
 				this.frm.clear_table("allocation");
-				this.frm.refresh();
+				this.frm.trigger("refresh_form");
 			}
 		});
 	}
