@@ -202,10 +202,13 @@ $.extend(erpnext.utils, {
 						filters.splice(index, 0, {
 							"fieldname": dimension["fieldname"],
 							"label": __(dimension["label"]),
-							"fieldtype": "MultiSelectList",
-							get_data: function(txt) {
-								return frappe.db.get_link_options(dimension["document_type"], txt);
-							},
+							// Vincent change MultiSelectList to Link
+							// "fieldtype": "MultiSelectList",
+							// get_data: function(txt) {
+							// 	return frappe.db.get_link_options(dimension["document_type"], txt);
+							// },
+							"fieldtype": "Link",
+							"options": dimension["document_type"],
 						});
 					}
 				});
