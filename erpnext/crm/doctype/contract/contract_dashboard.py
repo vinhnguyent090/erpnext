@@ -16,7 +16,7 @@ def get_data():
 		'transactions': [
 			{
 				'label': _('Contract'),
-				'items': ['Contract Loan','Contract Interest Payment','Contract Repayment']
+				'items': ['Contract Loan','Contract Interest Payment','Contract Repayment','Contract Temp Payment']
 			},
 			{
 				'label': _('Links'),
