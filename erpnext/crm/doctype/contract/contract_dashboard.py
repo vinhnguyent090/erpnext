@@ -12,6 +12,8 @@ def get_data():
 			'Coupons': 'reference_name',
 			'Contract Repayment': 'against_contract',
 			'Contract Interest Payment': 'against_contract',
+			'Delivery Note': 'reference_name',
+			'Contract Program Customer': 'reference_name',
 		},
 		'transactions': [
 			{
@@ -20,7 +22,7 @@ def get_data():
 			},
 			{
 				'label': _('Links'),
-				'items': ['Payment Entry', 'Sales Invoice', 'Coupons']
+				'items': ['Payment Entry', 'Sales Invoice', 'Coupons', 'Delivery Note','Contract Program Customer']
 			},
 		]
 	}
