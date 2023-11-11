@@ -242,6 +242,7 @@ def make_issue_from_communication(communication, ignore_communication_links=Fals
 		}
 	).insert(ignore_permissions=True)
 
+	doc.flags.in_receive = True
 	link_communication_to_document(doc, "Issue", issue.name, ignore_communication_links)
 
 	return issue.name
