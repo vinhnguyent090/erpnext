@@ -1105,7 +1105,7 @@ class StockController(AccountsController):
 			for rule, values in rule_map.items():
 				if flt(values["qty_put"]) > flt(values["capacity"]):
 					message = self.prepare_over_receipt_message(rule, values)
-					frappe.throw(msg=message, title=_("Over Receipt"))
+					frappe.msgprint(msg=message, title=_("Over Receipt"))
 
 	def prepare_over_receipt_message(self, rule, values):
 		message = _("{0} qty of Item {1} is being received into Warehouse {2} with capacity {3}.").format(
