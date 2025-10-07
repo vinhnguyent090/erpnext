@@ -5,7 +5,7 @@
    "label": "Purchase Order Trends"
   }
  ],
- "content": "[{\"id\":\"I3JijHOxil\",\"type\":\"onboarding\",\"data\":{\"onboarding_name\":\"Buying\",\"col\":12}},{\"id\":\"j3dJGo8Ok6\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Purchase Order Trends\",\"col\":12}},{\"id\":\"oN7lXSwQji\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"Ivw1PI_wEJ\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Your Shortcuts</b></span>\",\"col\":12}},{\"id\":\"RrWFEi4kCf\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Item\",\"col\":3}},{\"id\":\"RFIakryyJP\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Material Request\",\"col\":3}},{\"id\":\"bM10abFmf6\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Purchase Order\",\"col\":3}},{\"id\":\"lR0Hw_37Pu\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Purchase Analytics\",\"col\":3}},{\"id\":\"_HN0Ljw1lX\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Purchase Order Analysis\",\"col\":3}},{\"id\":\"kuLuiMRdnX\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Dashboard\",\"col\":3}},{\"id\":\"tQFeiKptW2\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Learn Procurement\",\"col\":3}},{\"id\":\"0NiuFE_EGS\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"Xe2GVLOq8J\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Reports &amp; Masters</b></span>\",\"col\":12}},{\"id\":\"QwqyG6XuUt\",\"type\":\"card\",\"data\":{\"card_name\":\"Buying\",\"col\":4}},{\"id\":\"bTPjOxC_N_\",\"type\":\"card\",\"data\":{\"card_name\":\"Items & Pricing\",\"col\":4}},{\"id\":\"87ht0HIneb\",\"type\":\"card\",\"data\":{\"card_name\":\"Settings\",\"col\":4}},{\"id\":\"EDOsBOmwgw\",\"type\":\"card\",\"data\":{\"card_name\":\"Supplier\",\"col\":4}},{\"id\":\"oWNNIiNb2i\",\"type\":\"card\",\"data\":{\"card_name\":\"Supplier Scorecard\",\"col\":4}},{\"id\":\"7F_13-ihHB\",\"type\":\"card\",\"data\":{\"card_name\":\"Key Reports\",\"col\":4}},{\"id\":\"pfwiLvionl\",\"type\":\"card\",\"data\":{\"card_name\":\"Other Reports\",\"col\":4}},{\"id\":\"8ySDy6s4qn\",\"type\":\"card\",\"data\":{\"card_name\":\"Regional\",\"col\":4}}]",
+ "content": "[{\"id\":\"j3dJGo8Ok6\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Purchase Order Trends\",\"col\":12}},{\"id\":\"oN7lXSwQji\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"aKgDq8pIjJ\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Duy\u1ec7t Y\u00eau c\u1ea7u mua h\u00e0ng</b></span>\",\"col\":12}},{\"id\":\"5VqINGVurY\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"QL Duy\u1ec7t Mua h\u00e0ng\",\"col\":3}},{\"id\":\"C9sSnvIYAt\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"L\u00e3nh \u0111\u1ea1o duy\u1ec7t mua\",\"col\":3}},{\"id\":\"EeuFZPutWE\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Duy\u1ec7t SX\",\"col\":3}},{\"id\":\"mKgB56oTPV\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u0110\u00e3 duy\u1ec7t YCMH\",\"col\":3}},{\"id\":\"v5eoHu6P0z\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u0110\u00e3 duy\u1ec7t YCSX\",\"col\":3}},{\"id\":\"MAJPCTrK6B\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"C\u00f4ng n\u1ee3 NCC\",\"col\":3}},{\"id\":\"3vXiyEy7UJ\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Duy\u1ec7t \u0110\u01a1n mua h\u00e0ng</b></span>\",\"col\":12}},{\"id\":\"RbfcJjziF5\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u0110\u01a1n mua c\u1ea7n duy\u1ec7t\",\"col\":3}},{\"id\":\"fPHPPt4AHp\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u0110\u01a1n c\u1ea7n xem l\u1ea1i\",\"col\":3}},{\"id\":\"MfUJDjIiLn\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u0110\u01a1n mua \u0111\u00e3 duy\u1ec7t\",\"col\":3}},{\"id\":\"NYu7grfNKN\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u0110\u01a1n \u0111\u00e3 h\u1ee7y\",\"col\":3}},{\"id\":\"Ivw1PI_wEJ\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>C\u00e1c ph\u00edm t\u1eaft c\u1ee7a b\u1ea1n</b></span>\",\"col\":12}},{\"id\":\"RrWFEi4kCf\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Item\",\"col\":3}},{\"id\":\"RFIakryyJP\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Material Request\",\"col\":3}},{\"id\":\"bM10abFmf6\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Purchase Order\",\"col\":3}},{\"id\":\"lR0Hw_37Pu\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Purchase Analytics\",\"col\":3}},{\"id\":\"_HN0Ljw1lX\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Purchase Order Analysis\",\"col\":3}},{\"id\":\"kuLuiMRdnX\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Dashboard\",\"col\":3}},{\"id\":\"tQFeiKptW2\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Learn Procurement\",\"col\":3}},{\"id\":\"0NiuFE_EGS\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"Xe2GVLOq8J\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>B\u00e1o c\u00e1o &amp; Th\u1ea1c s\u0129</b></span>\",\"col\":12}},{\"id\":\"QwqyG6XuUt\",\"type\":\"card\",\"data\":{\"card_name\":\"Buying\",\"col\":4}},{\"id\":\"bTPjOxC_N_\",\"type\":\"card\",\"data\":{\"card_name\":\"Items & Pricing\",\"col\":4}},{\"id\":\"87ht0HIneb\",\"type\":\"card\",\"data\":{\"card_name\":\"Settings\",\"col\":4}},{\"id\":\"EDOsBOmwgw\",\"type\":\"card\",\"data\":{\"card_name\":\"Supplier\",\"col\":4}},{\"id\":\"oWNNIiNb2i\",\"type\":\"card\",\"data\":{\"card_name\":\"Supplier Scorecard\",\"col\":4}},{\"id\":\"7F_13-ihHB\",\"type\":\"card\",\"data\":{\"card_name\":\"Key Reports\",\"col\":4}},{\"id\":\"pfwiLvionl\",\"type\":\"card\",\"data\":{\"card_name\":\"Other Reports\",\"col\":4}},{\"id\":\"8ySDy6s4qn\",\"type\":\"card\",\"data\":{\"card_name\":\"Regional\",\"col\":3}},{\"id\":\"hxouadB9Ip\",\"type\":\"card\",\"data\":{\"card_name\":\"B\u00e1o c\u00e1o Mua h\u00e0ng\",\"col\":3}}]",
  "creation": "2020-01-28 11:50:26.195467",
  "custom_blocks": [],
  "docstatus": 0,
@@ -509,9 +509,38 @@
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "B\u00e1o c\u00e1o Mua h\u00e0ng",
+   "link_count": 2,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 1,
+   "label": "Phi\u1ebfu mua h\u00e0ng",
+   "link_count": 0,
+   "link_to": "Report Purchase Order",
+   "link_type": "Report",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 1,
+   "label": "Y\u00eau c\u1ea7u v\u1eadt li\u1ec7u SP",
+   "link_count": 0,
+   "link_to": "Report Material Request item",
+   "link_type": "Report",
+   "onboard": 0,
+   "type": "Link"
   }
  ],
- "modified": "2023-07-04 14:43:30.387683",
+ "modified": "2025-05-14 10:13:43.424855",
  "modified_by": "Administrator",
  "module": "Buying",
  "name": "Buying",
@@ -525,6 +554,29 @@
  "sequence_id": 5.0,
  "shortcuts": [
   {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "C\u00f4ng n\u1ee3 NCC",
+   "link_to": "Report Accounts Payable",
+   "type": "Report"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "\u0110\u01a1n c\u1ea7n xem l\u1ea1i",
+   "link_to": "Purchase Order",
+   "stats_filter": "[[\"Purchase Order\",\"workflow_state\",\"=\",\"Xem l\u1ea1i\",false]]",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "\u0110\u01a1n mua c\u1ea7n duy\u1ec7t",
+   "link_to": "Purchase Order",
+   "stats_filter": "[[\"Purchase Order\",\"workflow_state\",\"=\",\"Tr\u00ecnh duy\u1ec7t\",false]]",
+   "type": "DocType"
+  },
+  {
    "color": "Green",
    "format": "{} Available",
    "label": "Item",
@@ -535,9 +587,57 @@
   {
    "color": "Grey",
    "doc_view": "List",
+   "label": "QL Duy\u1ec7t Mua h\u00e0ng",
+   "link_to": "Material Request",
+   "stats_filter": "[[\"Material Request\",\"material_request_type\",\"=\",\"Purchase\",false],[\"Material Request\",\"workflow_state\",\"=\",\"Y\u00eau c\u1ea7u mua h\u00e0ng\",false]]",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "\u0110\u00e3 duy\u1ec7t YCSX",
+   "link_to": "Material Request",
+   "stats_filter": "[[\"Material Request\",\"docstatus\",\"=\",\"1\",false],[\"Material Request\",\"material_request_type\",\"=\",\"Manufacture\",false],[\"Material Request\",\"per_ordered\",\"<\",50,false]]",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "\u0110\u01a1n \u0111\u00e3 h\u1ee7y",
+   "link_to": "Purchase Order",
+   "stats_filter": "[[\"Purchase Order\",\"workflow_state\",\"=\",\"Kh\u00f4ng duy\u1ec7t\",false]]",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "\u0110\u01a1n mua \u0111\u00e3 duy\u1ec7t",
+   "link_to": "Purchase Order",
+   "stats_filter": "[[\"Purchase Order\",\"workflow_state\",\"=\",\"Duy\u1ec7t mua\",false]]",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "\u0110\u00e3 duy\u1ec7t YCMH",
+   "link_to": "Material Request",
+   "stats_filter": "[[\"Material Request\",\"docstatus\",\"=\",\"1\",false],[\"Material Request\",\"material_request_type\",\"=\",\"Purchase\",false],[\"Material Request\",\"custom_purchase_order\",\"is\",\"not set\",false]]",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
    "label": "Learn Procurement",
    "type": "URL",
    "url": "https://frappe.school/courses/procurement?utm_source=in_app"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "L\u00e3nh \u0111\u1ea1o duy\u1ec7t mua",
+   "link_to": "Material Request",
+   "stats_filter": "[[\"Material Request\",\"material_request_type\",\"=\",\"Purchase\",false],[\"Material Request\",\"workflow_state\",\"=\",\"Mua h\u00e0ng duy\u1ec7t\",false]]",
+   "type": "DocType"
   },
   {
    "color": "Yellow",
@@ -545,6 +645,14 @@
    "label": "Material Request",
    "link_to": "Material Request",
    "stats_filter": "{\n    \"company\": [\"like\", '%' + frappe.defaults.get_global_default(\"company\") + '%'],\n    \"status\": \"Pending\"\n}",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Duy\u1ec7t SX",
+   "link_to": "Material Request",
+   "stats_filter": "[[\"Material Request\",\"material_request_type\",\"=\",\"Manufacture\",false],[\"Material Request\",\"workflow_state\",\"=\",\"Y\u00eau c\u1ea7u s\u1ea3n xu\u1ea5t\",false]]",
    "type": "DocType"
   },
   {
