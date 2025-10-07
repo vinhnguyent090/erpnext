@@ -74,7 +74,7 @@ class PutawayRule(Document):
 		balance_qty = get_stock_balance(self.item_code, self.warehouse, nowdate())
 
 		if flt(self.stock_capacity) < flt(balance_qty):
-			frappe.throw(
+			frappe.msgprint(
 				_(
 					"Warehouse Capacity for Item '{0}' must be greater than the existing stock level of {1} {2}."
 				).format(self.item_code, frappe.bold(balance_qty), stock_uom),

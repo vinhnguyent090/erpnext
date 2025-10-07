@@ -150,6 +150,11 @@ erpnext.taxes_and_totals = class TaxesAndTotals extends erpnext.payments {
 					item.net_amount = item.amount = flt(item.rate * qty, precision("amount", item));
 				}
 
+				// Vincent round amount
+				if (me.frm.doc.currency == "VND"){
+					item.net_amount = item.amount = Math.round(item.amount);
+				}
+
 				item.item_tax_amount = 0.0;
 				item.total_weight = flt(item.weight_per_unit * item.stock_qty);
 

@@ -111,15 +111,16 @@ class Employee(NestedSet):
 			user.append_roles("Employee")
 
 		# copy details like Fullname, DOB and Image to User
-		if self.employee_name and not (user.first_name and user.last_name):
-			employee_name = self.employee_name.split(" ")
-			if len(employee_name) >= 3:
-				user.last_name = " ".join(employee_name[2:])
-				user.middle_name = employee_name[1]
-			elif len(employee_name) == 2:
-				user.last_name = employee_name[1]
+		# Vincent disable update full name of User
+		# if self.employee_name and not (user.first_name and user.last_name):
+		# 	employee_name = self.employee_name.split(" ")
+		# 	if len(employee_name) >= 3:
+		# 		user.last_name = " ".join(employee_name[2:])
+		# 		user.middle_name = employee_name[1]
+		# 	elif len(employee_name) == 2:
+		# 		user.last_name = employee_name[1]
 
-			user.first_name = employee_name[0]
+		# 	user.first_name = employee_name[0]
 
 		if self.date_of_birth:
 			user.birth_date = self.date_of_birth

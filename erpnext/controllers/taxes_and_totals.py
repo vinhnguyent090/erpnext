@@ -225,6 +225,10 @@ class calculate_taxes_and_totals:
 					item.amount = flt(item.rate, item.precision("amount"))
 				else:
 					item.amount = flt(item.rate * item.qty, item.precision("amount"))
+				
+				# Vincent round amount item
+				if hasattr(self.doc, "currency") and self.doc.currency:
+					item.amount  = round(item.amount)
 
 				item.net_amount = item.amount
 

@@ -1125,8 +1125,8 @@ def validate_end_of_life(item_code, end_of_life=None, disabled=None):
 			_("Item {0} has reached its end of life on {1}").format(item_code, formatdate(end_of_life))
 		)
 
-	if disabled:
-		frappe.throw(_("Item {0} is disabled").format(item_code))
+	# if disabled:
+	# 	frappe.throw(_("Item {0} is disabled").format(item_code))
 
 
 def validate_is_stock_item(item_code, is_stock_item=None):

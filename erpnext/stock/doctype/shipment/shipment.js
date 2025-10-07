@@ -263,7 +263,7 @@ frappe.ui.form.on("Shipment", {
 			{ name: frappe.session.user },
 			["full_name", "last_name", "email", "phone", "mobile_no"],
 			(r) => {
-				if (!(r.last_name && r.email && (r.phone || r.mobile_no))) {
+				if (!(r.full_name && r.email && (r.phone || r.mobile_no))) {
 					if (delivery_type == "Delivery") {
 						frm.set_value("delivery_company", "");
 						frm.set_value("delivery_contact", "");
