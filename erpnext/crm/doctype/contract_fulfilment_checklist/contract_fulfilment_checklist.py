@@ -16,7 +16,7 @@ class ContractFulfilmentChecklist(Document):
 
 		amended_from: DF.Link | None
 		fulfilled: DF.Check
-		notes: DF.Text | None
+		notes: DF.TextEditor | None
 		parent: DF.Data
 		parentfield: DF.Data
 		parenttype: DF.Data

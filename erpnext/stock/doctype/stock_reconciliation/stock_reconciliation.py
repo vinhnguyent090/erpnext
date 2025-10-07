@@ -71,7 +71,7 @@ class StockReconciliation(StockController):
 		self.set_current_serial_and_batch_bundle()
 		self.set_new_serial_and_batch_bundle()
 		self.validate_duplicate_serial_and_batch_bundle("items")
-		self.remove_items_with_no_change()
+		# self.remove_items_with_no_change()
 		self.validate_data()
 		self.validate_expense_account()
 		self.validate_customer_provided_item()
